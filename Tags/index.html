@@ -219,6 +219,9 @@
     <div class="article-info article-info-index">
       
       
+      <span id="busuanzi_container_page_pv">
+        |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>
       
 
       
@@ -301,9 +304,19 @@
 
 
   
-  
+
   
 
+  
+  <div id="SOHUCS" sid="" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytp76zpY",
+        conf: "88b2e7c64054efc94c0e2ade8d2d6e7b"
+    });
+</script>
+</script>
   
 
   
@@ -408,6 +421,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">first blog</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
