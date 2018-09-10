@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="">
-  <title>first blog | 欧先森</title>
+  <title>前端模块化总结 | 欧先森</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用hexo及github创建的博客系统 oumingliang">
-<meta name="keywords" content="first blog">
+  <meta name="description" content="模块是自动运行在严格模式下并且没有办法退出运行的JS代码，目前前端运行环境分为浏览器环境和Node环境，                                          在这两个环境下使用的模块化方式也自然是不同的。 我们将模块的使用分为两个方法:暴露自身数据、获取其他模块的数据    规范 运行环境 导出 导入     commonjs 浏览器/node module.expo">
+<meta name="keywords" content="模块化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="first blog">
-<meta property="og:url" content="/2018/09/09/first-blog/index.html">
+<meta property="og:title" content="前端模块化总结">
+<meta property="og:url" content="/2018/09/10/前端模块化总结/index.html">
 <meta property="og:site_name" content="欧先森">
-<meta property="og:description" content="使用hexo及github创建的博客系统 oumingliang">
+<meta property="og:description" content="模块是自动运行在严格模式下并且没有办法退出运行的JS代码，目前前端运行环境分为浏览器环境和Node环境，                                          在这两个环境下使用的模块化方式也自然是不同的。 我们将模块的使用分为两个方法:暴露自身数据、获取其他模块的数据    规范 运行环境 导出 导入     commonjs 浏览器/node module.expo">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-09T12:02:18.459Z">
+<meta property="og:image" content="c:/Users/Administrator/Desktop/360截图20180910222358561.jpg">
+<meta property="og:updated_time" content="2018-09-10T15:14:10.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="first blog">
-<meta name="twitter:description" content="使用hexo及github创建的博客系统 oumingliang">
+<meta name="twitter:title" content="前端模块化总结">
+<meta name="twitter:description" content="模块是自动运行在严格模式下并且没有办法退出运行的JS代码，目前前端运行环境分为浏览器环境和Node环境，                                          在这两个环境下使用的模块化方式也自然是不同的。 我们将模块的使用分为两个方法:暴露自身数据、获取其他模块的数据    规范 运行环境 导出 导入     commonjs 浏览器/node module.expo">
+<meta name="twitter:image" content="c:/Users/Administrator/Desktop/360截图20180910222358561.jpg">
   
     <link rel="alternative" href="/atom.xml" title="欧先森" type="application/atom+xml">
   
@@ -159,28 +161,109 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-first-blog" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-前端模块化总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      first blog
+      前端模块化总结
     </h1>
   
 
         
-        <a href="/2018/09/09/first-blog/" class="archive-article-date">
-  	<time datetime="2018-09-08T16:42:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-09</time>
+        <a href="/2018/09/10/前端模块化总结/" class="archive-article-date">
+  	<time datetime="2018-09-10T13:26:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用hexo及github创建的博客系统</p>
-<p>oumingliang</p>
+        <p>模块是自动运行在严格模式下并且没有办法退出运行的JS代码，目前前端运行环境分为浏览器环境和Node环境，                                          在这两个环境下使用的模块化方式也自然是不同的。</p>
+<p>我们将模块的使用分为两个方法:暴露自身数据、获取其他模块的数据</p>
+<table>
+<thead>
+<tr>
+<th>规范</th>
+<th>运行环境</th>
+<th>导出</th>
+<th>导入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>commonjs</td>
+<td>浏览器/node</td>
+<td>module.exports/exports</td>
+<td>require</td>
+</tr>
+<tr>
+<td>AMD</td>
+<td>浏览器</td>
+<td>define  return</td>
+<td>require</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>浏览器</td>
+<td>define  exports</td>
+<td>require</td>
+</tr>
+<tr>
+<td>ES6</td>
+<td>浏览器/node</td>
+<td>export default / export</td>
+<td>import from</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>Node环境</strong></p>
+<ul>
+<li><p>common.js：CommonJS是服务器模块的规范，Node.js采用了这个规范。</p>
+<p>根据CommonJS规范，一个单独的文件就是一个模块。每一个模块都是一个单独的作用域，也就是说，在一个文件定义的变量（还包括函数和类），都是私有的，对其他文件是不可见的。</p>
+<p>在这个规范下，暴露数据采用 <strong>module.exports 和exports</strong>这两个方法，获取数据采用<strong>require</strong>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a.js</span><br><span class="line"><span class="keyword">var</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">var</span> y=<span class="number">4</span>;</span><br><span class="line"><span class="keyword">var</span> addX = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value + x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">module</span>.exports.x = x;</span><br><span class="line"><span class="built_in">module</span>.exports.addX = addX;</span><br><span class="line">exports.y=y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">b.js</span><br><span class="line"><span class="keyword">const</span> a=<span class="built_in">require</span>(<span class="string">'a.js'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a.x);<span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(a.addX(<span class="number">5</span>));<span class="comment">//10</span></span><br><span class="line"><span class="built_in">console</span>.log(a.y);<span class="comment">//4</span></span><br></pre></td></tr></table></figure>
+<p>在a.js中通过module.exports暴露出x和addx方法，b.js通过requie获取a模块的暴露出的数据。</p>
+<p><strong>那么module.exports和exports有什么区别了？</strong></p>
+<p><img src="C:\Users\Administrator\Desktop\360截图20180910222358561.jpg" alt="360截图20180910222358561"></p>
+<p>其实require导入的内容是module.exports的指向的内存块内容，并不是exports的，简而言之，exports是module.exports的引用，辅助后者添加内容用的。</p>
+<p><strong>所以，为了避免糊涂，尽量使用module.exports导出数据。</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>浏览器环境</strong></p>
+<p><strong>1. AMD规范</strong></p>
+<p>AMD规范的产物是require.js，按需加载</p>
+<p>声明一个模块：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(id, dependencies, factory);</span><br></pre></td></tr></table></figure>
+<p>输出数据用 <strong>return</strong> </p>
+<p>获取数据用 <strong>require</strong></p>
+<p>在模块定义中，id和dependencies是可以省略的，话不多说，看代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">student.js</span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    <span class="keyword">return</span> &#123; </span><br><span class="line">       createStudent: <span class="function"><span class="keyword">function</span>(<span class="params">name, gender</span>)</span>&#123; </span><br><span class="line">            <span class="keyword">return</span> &#123; </span><br><span class="line">                name: name, </span><br><span class="line">                gender: gender </span><br><span class="line">            &#125;; </span><br><span class="line">       &#125; </span><br><span class="line">    &#125;; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span>.<span class="title">js</span></span></span><br><span class="line"><span class="class"><span class="title">define</span>(<span class="title">function</span>() </span>&#123; </span><br><span class="line"><span class="keyword">var</span> allStudents = []; </span><br><span class="line">       <span class="keyword">return</span> &#123; </span><br><span class="line">           classID: <span class="string">"001"</span>, </span><br><span class="line">           department: <span class="string">"computer"</span>, </span><br><span class="line">           addToClass: <span class="function"><span class="keyword">function</span>(<span class="params">student</span>) </span>&#123; </span><br><span class="line">           allStudents.push(student); </span><br><span class="line">           &#125;, </span><br><span class="line">           getClassSize: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">           <span class="keyword">return</span> allStudents.length; </span><br><span class="line">           &#125; </span><br><span class="line">       &#125;; </span><br><span class="line">    &#125; </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main.js</span><br><span class="line"><span class="built_in">require</span>([<span class="string">"student"</span>, <span class="string">"class"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">student, clz</span>) </span>&#123; </span><br><span class="line">clz.addToClass(student.createStudent(<span class="string">"Jack"</span>, <span class="string">"male"</span>)); </span><br><span class="line">clz.addToClass(student.createStudent(<span class="string">"Rose"</span>, <span class="string">"female"</span>)); </span><br><span class="line"><span class="built_in">console</span>.log(clz.getClassSize());  <span class="comment">// 输出 2 </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>​        以上定义了三个js，其中main.js获取了student和class的模块数据。</p>
+<pre><code>student 模块和 class 模块都是独立的模块，下面我们再定义一个新的模块，这个模块依赖 student 和         class 模块，这样主程序部分的逻辑也可以包装进去了。
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">newmain.js</span><br><span class="line"><span class="built_in">require</span>([<span class="string">"js/manager"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">manager</span>) </span>&#123; </span><br><span class="line">manager.addNewStudent(<span class="string">"Jack"</span>, <span class="string">"male"</span>); </span><br><span class="line">manager.addNewStudent(<span class="string">"Rose"</span>, <span class="string">"female"</span>); </span><br><span class="line"><span class="built_in">console</span>.log(manager.getMyClassSize());<span class="comment">// 输出 2 </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<p><strong>2.CMD规范</strong></p>
+<p>CMD的产出结果是seal.js，暂时我不讨论AMD与CMD的区别，先讲用法。</p>
+<p>CMD规范下的模块和AMD下的模块是极为相似的，你用AMD模块的语法照样可以在CMD中使用，唯一不同CMD使用<strong>exports和return</strong> 来导出数据。</p>
+<p><strong>3.ES6模块标准</strong></p>
+<p>导出：export和export default</p>
+<p>导入：import from</p>
+<p>export default在模块中是唯一的，而export可以有多个，所以在通过export方式导出后，在导入时需要加import {  } from ‘模块’，{  }里面是导出的数据名<strong>，==虽然这个很像是对象解构，但是，并不是哦。</strong>==</p>
+<hr>
+<p>后记补充：</p>
 
       
 
@@ -225,7 +308,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">first blog</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">模块化</a>
         		</li>
       		
 		</ul>
@@ -284,7 +367,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:/2018/09/09/first-blog/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:/2018/09/10/前端模块化总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,7 +403,7 @@
   
 
   
-  <div id="SOHUCS" sid="first-blog" ></div> 
+  <div id="SOHUCS" sid="前端模块化总结" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
@@ -435,7 +518,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">first blog</a>
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
               </li>
             
             <div class="clearfix"></div>
