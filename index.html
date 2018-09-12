@@ -338,36 +338,8 @@
 </ul>
 </li>
 </ul>
-<pre><code>点击展开全文&gt;&gt;
-
- &lt;!--more--&gt;
-</code></pre><ul>
-<li><p><strong>浏览器环境</strong></p>
-<p><strong>1. AMD规范</strong></p>
-<p>AMD规范的产物是require.js，按需加载</p>
-<p>声明一个模块：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(id, dependencies, factory);</span><br></pre></td></tr></table></figure>
-<p>输出数据用 <strong>return</strong> </p>
-<p>获取数据用 <strong>require</strong></p>
-<p>在模块定义中，id和dependencies是可以省略的，话不多说，看代码。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">student.js</span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    <span class="keyword">return</span> &#123; </span><br><span class="line">       createStudent: <span class="function"><span class="keyword">function</span>(<span class="params">name, gender</span>)</span>&#123; </span><br><span class="line">            <span class="keyword">return</span> &#123; </span><br><span class="line">                name: name, </span><br><span class="line">                gender: gender </span><br><span class="line">            &#125;; </span><br><span class="line">       &#125; </span><br><span class="line">    &#125;; </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span>.<span class="title">js</span></span></span><br><span class="line"><span class="class"><span class="title">define</span>(<span class="title">function</span>() </span>&#123; </span><br><span class="line"><span class="keyword">var</span> allStudents = []; </span><br><span class="line">       <span class="keyword">return</span> &#123; </span><br><span class="line">           classID: <span class="string">"001"</span>, </span><br><span class="line">           department: <span class="string">"computer"</span>, </span><br><span class="line">           addToClass: <span class="function"><span class="keyword">function</span>(<span class="params">student</span>) </span>&#123; </span><br><span class="line">           allStudents.push(student); </span><br><span class="line">           &#125;, </span><br><span class="line">           getClassSize: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">           <span class="keyword">return</span> allStudents.length; </span><br><span class="line">           &#125; </span><br><span class="line">       &#125;; </span><br><span class="line">    &#125; </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main.js</span><br><span class="line"><span class="built_in">require</span>([<span class="string">"student"</span>, <span class="string">"class"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">student, clz</span>) </span>&#123; </span><br><span class="line">clz.addToClass(student.createStudent(<span class="string">"Jack"</span>, <span class="string">"male"</span>)); </span><br><span class="line">clz.addToClass(student.createStudent(<span class="string">"Rose"</span>, <span class="string">"female"</span>)); </span><br><span class="line"><span class="built_in">console</span>.log(clz.getClassSize());  <span class="comment">// 输出 2 </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>以上定义了三个js，其中main.js获取了student和class的模块数据。</p>
-<p>student 模块和 class 模块都是独立的模块，下面我们再定义一个新的模块，这个模块依赖 student 和         class 模块，这样主程序部分的逻辑也可以包装进去了。</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">newmain.js</span><br><span class="line"><span class="built_in">require</span>([<span class="string">"js/manager"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">manager</span>) </span>&#123; </span><br><span class="line">manager.addNewStudent(<span class="string">"Jack"</span>, <span class="string">"male"</span>); </span><br><span class="line">manager.addNewStudent(<span class="string">"Rose"</span>, <span class="string">"female"</span>); </span><br><span class="line"><span class="built_in">console</span>.log(manager.getMyClassSize());<span class="comment">// 输出 2 </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><strong>2.CMD规范</strong></p>
-<p>CMD的产出结果是seal.js，暂时我不讨论AMD与CMD的区别，先讲用法。</p>
-<p>CMD规范下的模块和AMD下的模块是极为相似的，你用AMD模块的语法照样可以在CMD中使用，唯一不同CMD使用<strong>exports和return</strong> 来导出数据。</p>
-<p><strong>3.ES6模块标准</strong></p>
-<p>导出：export和export default</p>
-<p>导入：import from</p>
-<p>export default在模块中是唯一的，而export可以有多个，所以在通过export方式导出后，在导入时需要加import {  } from ‘模块’，{  }里面是导出的数据名<strong>，==虽然这个很像是对象解构，但是，并不是哦。</strong>==</p>
-<hr>
-<p>后记补充：</p>
-
+<p>点击展开全文&gt;&gt;</p>
+        
       
 
       
