@@ -17,7 +17,7 @@
 <meta property="og:description" content="模块是自动运行在严格模式下并且没有办法退出运行的JS代码，目前前端运行环境分为浏览器环境和Node环境，                                          在这两个环境下使用的模块化方式也自然是不同的。 我们将模块的使用分为两个方法:暴露自身数据、获取其他模块的数据    规范 运行环境 导出 导入     commonjs 浏览器/node module.expo">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="/images/module.jpg">
-<meta property="og:updated_time" content="2018-09-10T16:00:06.152Z">
+<meta property="og:updated_time" content="2018-09-12T11:52:54.877Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端模块化总结">
 <meta name="twitter:description" content="模块是自动运行在严格模式下并且没有办法退出运行的JS代码，目前前端运行环境分为浏览器环境和Node环境，                                          在这两个环境下使用的模块化方式也自然是不同的。 我们将模块的使用分为两个方法:暴露自身数据、获取其他模块的数据    规范 运行环境 导出 导入     commonjs 浏览器/node module.expo">
@@ -236,7 +236,10 @@
 </ul>
 </li>
 </ul>
-<ul>
+<pre><code>点击展开全文&gt;&gt;
+
+ &lt;!--more--&gt;
+</code></pre><ul>
 <li><p><strong>浏览器环境</strong></p>
 <p><strong>1. AMD规范</strong></p>
 <p>AMD规范的产物是require.js，按需加载</p>
@@ -376,7 +379,52 @@
   </div>
 </article>
 
+<!-- 目录内容 -->
+
+<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+  <span class="btn-bg"></span>
+  <span class="btn-text">文章导航</span>
+</p>
+<div id="toc-article" class="toc-article">
+  <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+  <strong class="toc-title">文章目录</strong>
   
+</div>
+<script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+  };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+  };
+</script>
+
+<!-- 目录内容结束 -->
+
+
+
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/09/12/小程序/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          小程序开发重点解析
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -390,6 +438,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -415,6 +476,9 @@
   
 
   
+
+
+
 
 
           </div>
@@ -517,6 +581,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">小程序 获取用户信息</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">获取用户信息</a>
               </li>
             
             <div class="clearfix"></div>
