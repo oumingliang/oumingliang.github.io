@@ -17,7 +17,7 @@
 <meta property="og:description" content="1.小程序登录  数据流梗概：   1.客户端登录（产生res.code）   2.APP服务端（持有appid\appsecret）   3.微信服务（appid+appsecret+res.code换取sessionKey、openid、unionid)   4.APP服务端（存储微信服务返回的openId、unionid等，产生自定义的sessionId）-&amp;gt;   5.客户端登录完成（">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="/images/小程序授权.png">
-<meta property="og:updated_time" content="2018-09-12T12:01:42.710Z">
+<meta property="og:updated_time" content="2018-09-13T13:56:47.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序开发重点解析">
 <meta name="twitter:description" content="1.小程序登录  数据流梗概：   1.客户端登录（产生res.code）   2.APP服务端（持有appid\appsecret）   3.微信服务（appid+appsecret+res.code换取sessionKey、openid、unionid)   4.APP服务端（存储微信服务返回的openId、unionid等，产生自定义的sessionId）-&amp;gt;   5.客户端登录完成（">
@@ -205,7 +205,7 @@
 <p><strong>如果用户已经关注公众号，或者曾经登录过App或公众号，则用户打开小程序时，开发者可以直接通过wx.login获取到该用户UnionID，无须用户再次授权。</strong></p>
 <p>这里分为两种情况，</p>
 <p>(1)用code换取的时候，返回了unionid，这样就皆大欢喜了，你可以根据unionid以及openid去判断该用户有没有用户信息，从而获取userid或者生产userid返回给前端</p>
-<p>(2)悲剧的情况，unionid返回为null，这时候你没法儿关联出用户的userid。后来再去看官方文档的时候，发现有针对这种情况的方法。就是需要前端再去调wx.getUserInfo()这个接口。这时候微信会返回很多数据(详情见微信官方文档:<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/open.html),这些数据里面有一个encryptedData,这个数据中就包含你需要的unionid以及其他的很多用户信息啦。获取到以后将encryptedData、加密算法的初始向量iv返回给后端，后端根据这两个数据以及之前的session_key就可以解密出你需要的数据了。" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/wxadoc/dev/api/open.html),这些数据里面有一个encryptedData,这个数据中就包含你需要的unionid以及其他的很多用户信息啦。获取到以后将encryptedData、加密算法的初始向量iv返回给后端，后端根据这两个数据以及之前的session_key就可以解密出你需要的数据了。</a></p>
+<p>(2)悲剧的情况，unionid返回为null，这时候你没法儿关联出用户的userid。后来再去看官方文档的时候，发现有针对这种情况的方法。就是需要前端再去调wx.getUserInfo()这个接口。这时候微信会返回很多数据<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/open.html" target="_blank" rel="noopener">详情见微信官方文档:</a>,这些数据里面有一个encryptedData,这个数据中就包含你需要的unionid以及其他的很多用户信息啦。获取到以后将encryptedData、加密算法的初始向量iv返回给后端，后端根据这两个数据以及之前的session_key就可以解密出你需要的数据了。</p>
 <p>encryptedData 解密后为以下 json 结构，</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"openId"</span>: <span class="string">"OPENID"</span>,</span><br><span class="line">    <span class="attr">"nickName"</span>: <span class="string">"NICKNAME"</span>,</span><br><span class="line">    <span class="attr">"gender"</span>: GENDER,</span><br><span class="line">    <span class="attr">"city"</span>: <span class="string">"CITY"</span>,</span><br><span class="line">    <span class="attr">"province"</span>: <span class="string">"PROVINCE"</span>,</span><br><span class="line">    <span class="attr">"country"</span>: <span class="string">"COUNTRY"</span>,</span><br><span class="line">    <span class="attr">"avatarUrl"</span>: <span class="string">"AVATARURL"</span>,</span><br><span class="line">    <span class="attr">"unionId"</span>: <span class="string">"UNIONID"</span>,</span><br><span class="line">    <span class="attr">"watermark"</span>:</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="attr">"appid"</span>:<span class="string">"APPID"</span>,</span><br><span class="line">	<span class="attr">"timestamp"</span>:TIMESTAMP</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
@@ -379,6 +379,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/09/13/Angular重点笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Angular重点笔记
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/09/10/前端模块化总结/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">前端模块化总结</div>
@@ -542,15 +551,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">获取用户信息</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
               </li>
             
             <div class="clearfix"></div>
