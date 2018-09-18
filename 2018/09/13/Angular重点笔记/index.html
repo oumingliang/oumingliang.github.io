@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="欧先森">
 <meta property="og:description" content="1. 模块按需加载 使用require.js 使用oclazyload.js   由于采用angular做了网页的单页面应用,需要一次性在主布局中将所有模块需要引用到的js都引入.对于比较小的项目,这是可行的,但是对于大的项目,一旦js文件较多,在页面首次加载时就引入所有js文件,无疑会延缓页面加载的速度,造成不良额用户体验.那么分布加载(按需加载)就显得很有必要了.  1.1 使用require">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-13T14:02:56.534Z">
+<meta property="og:updated_time" content="2018-09-18T14:25:57.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular重点笔记">
 <meta name="twitter:description" content="1. 模块按需加载 使用require.js 使用oclazyload.js   由于采用angular做了网页的单页面应用,需要一次性在主布局中将所有模块需要引用到的js都引入.对于比较小的项目,这是可行的,但是对于大的项目,一旦js文件较多,在页面首次加载时就引入所有js文件,无疑会延缓页面加载的速度,造成不良额用户体验.那么分布加载(按需加载)就显得很有必要了.  1.1 使用require">
@@ -194,7 +194,6 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">           .state(<span class="string">"login"</span>, &#123;</span><br><span class="line">               url: <span class="string">"/login"</span>,</span><br><span class="line">               templateUrl: <span class="string">"views/login.html"</span>,</span><br><span class="line">               controller: <span class="string">"LoginController"</span>,</span><br><span class="line">               dependencies: [<span class="string">"controllers/LoginController"</span>]</span><br><span class="line">               resolve: &#123;</span><br><span class="line">                   deps: [<span class="string">"$q"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$q</span>) </span>&#123;</span><br><span class="line">                        <span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line">                       <span class="comment">//异步加载controllers/LoginController</span></span><br><span class="line">                       <span class="built_in">require</span>([<span class="string">"controllers/LoginController"</span>],<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">                         deferred.resolve(); </span><br><span class="line">                 &#125;);</span><br><span class="line">                       <span class="keyword">return</span> deferred.promise;</span><br><span class="line">                   &#125;]</span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure>
 <p>前文说了lazy()按需加载，那么之后创建的js文件，即可使用lazy()来注册</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> app.lazy.controller(<span class="string">"competitionStatisticsController"</span>, controller);</span><br></pre></td></tr></table></figure>
-<p>点击展开全文&gt;&gt;</p>
 <a id="more"></a>
 <h3 id="1-2-使用oclazyload-js"><a href="#1-2-使用oclazyload-js" class="headerlink" title="1.2 使用oclazyload.js"></a>1.2 使用oclazyload.js</h3><p><strong>index.html需引入app.js,主要内容为定义的angular.module,以及路由配置：</strong></p>
 <p><strong>注意：oclazyload.js在angularjs后引入</strong></p>
@@ -356,6 +355,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/09/18/后端路由与前端路由/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          后端路由与前端路由
+        
+      </div>
+    </a>
   
   
     <a href="/2018/09/12/小程序/" id="article-nav-older" class="article-nav-link-wrap">
@@ -520,6 +528,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
@@ -528,11 +544,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+                <a href="javascript:void(0)" class="js-tag color3">路由</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
               </li>
             
             <div class="clearfix"></div>

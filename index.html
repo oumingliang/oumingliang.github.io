@@ -160,6 +160,130 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-后端路由与前端路由" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/18/后端路由与前端路由/">后端路由与前端路由</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/18/后端路由与前端路由/" class="archive-article-date">
+  	<time datetime="2018-09-18T14:13:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="浅谈前后端路由与前后端渲染"><a href="#浅谈前后端路由与前后端渲染" class="headerlink" title="浅谈前后端路由与前后端渲染"></a>浅谈前后端路由与前后端渲染</h1><p><strong>参考资源：</strong><br><a href="https://molunerfinn.com/fe-be-router-render/" target="_blank" rel="noopener">浅谈前后端路由与前后端渲染</a><br><a href="https://zhuanlan.zhihu.com/p/24814675" target="_blank" rel="noopener">理解web路由</a></p>
+<blockquote>
+<p>部分内容转载于<a href="https://molunerfinn.com/fe-be-router-render/" target="_blank" rel="noopener">浅谈前后端路由与前后端渲染</a></p>
+</blockquote>
+<p>最近经常会遇到有人问诸如类似下面的问题：<br>为啥我写的Vue应用在开发阶段都没问题，</p>
+<p> 部署到服务端之后访问不了除了/的页面呢<br>为啥我写的SPA页面的路由用hash模式都没问题</p>
+<p>改成history模式就问题百出呢<br>啥是前端路由啥是后端路由，要怎么配后端才能支持我的前端路由呢?</p>
+<p>什么是路由?  </p>
+<p><strong>在Web开发过程中，经常会遇到『路由』的概念。那么，到底什么是路由？简单来说，路由就是URL到函数的映射。</strong><br><strong>访问的URL会映射到相应的函数里（这个函数是广义的，可以是前端的函数也可以是后端的函数），然后由相应的函数来决定返回给这个URL什么东西。路由就是在做一个匹配的工作。</strong></p>
+<p>如果你能看懂下面这张图，那么这篇文章对你作用不大。</p>
+<p><img src="https://ws1.sinaimg.cn/large/be389dc0gy1fve1qfv9erj20p60frtap.jpg" alt="路由图解"></p>
+<h2 id="1-从后端路由讲起"><a href="#1-从后端路由讲起" class="headerlink" title="1. 从后端路由讲起"></a>1. 从后端路由讲起</h2><p>在web开发早期的「刀耕火种」年代里，一直是后端路由占据主导地位。不管是php，还是jsp、asp，用户能通过URL访问到的页面，大多是通过后端路由匹配之后再返回给浏览器的。经典面试题，「你从浏览器地址栏里输入<code>www.baidu.com</code>到你看到网页这个过程中经历了什么」其实讲的也是这个道理。</p>
+<p><a href="https://ws1.sinaimg.cn/large/8700af19ly1fproibqucxj20lu03odg9.jpg" target="_blank" rel="noopener"><img src="https://ws1.sinaimg.cn/large/8700af19ly1fproibqucxj20lu03odg9.jpg" alt="img"></a></p>
+<p>在web后端，不管是什么语言的后端框架，都会有一个专门开辟出来的路由模块或者路由区域，用来匹配用户给出的URL地址，以及一些表单提交、ajax请求的地址。通常遇到无法匹配的路由，后端将会返回一个<code>404</code>状态码。这也是我们常说的<code>404 NOT FOUND</code>的由来。</p>
+<h3 id="1-1-URL与Methods"><a href="#1-1-URL与Methods" class="headerlink" title="1.1 URL与Methods"></a>1.1 URL与Methods</h3><p>如果你关注RESTful API，那么将会很熟悉下面四种发起请求的类型：<code>GET</code>，<code>POST</code>，<code>PUT</code>，<code>DELETE</code>。</p>
+<blockquote>
+<p>它们分别对应四种基本操作：<strong>GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。</strong> ——来自阮一峰<a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank" rel="noopener">《理解RESTful架构》</a></p>
+</blockquote>
+<p>虽然上面说的是RESTful API，但是实际上我们在地址栏输入一个URL，并回车的时候，是以<code>GET</code>请求发出去的。这也体现了，URL地址和请求的method也应该是一一对应。下面给出一个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">'/user/:id'</span>, addUser)</span><br></pre></td></tr></table></figure>
+<p>假如我的后端路由配置里只有这一句路由。那么我通过浏览器里访问：<code>http://xxx.com/user/123</code>的话是无法访问到的，也会返回一个404。因为后端只配了一个<code>post</code>方法的路由。如果要接受这个请求，那么必须有如下的路由：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/user/:id'</span>, getUser) <span class="comment">// 配置get路由</span></span><br><span class="line">router.post(<span class="string">'/user/:id'</span>, addUser)</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-后端路由与服务端渲染"><a href="#1-2-后端路由与服务端渲染" class="headerlink" title="1.2 后端路由与服务端渲染"></a>1.2 后端路由与服务端渲染</h3><p>前面说了，「刀耕火种」的年代里，网页通常是通过后端路由直出给客户端浏览器的。也就是网页的html一般是在后端服务器里通过模板引擎渲染好再交给前端的。至于一些其他的效果，是通过预先写在页面里的jQuery、Bootstrap等常见的前端框架去负责的。</p>
+<p>如果你说有些网站已经是通过ajax去实现的页面，比如gmail，比如qq邮箱。那么你要注意到哪怕是这些页面，它们页面的「龙骨」也并非是全部通过ajax去实现的，依然还是后端直出——这也就是我们现在又老生常谈的<strong>服务端渲染</strong>。</p>
+<p>服务端渲染的好处有很多，比如对于SEO友好，一些对安全性要求高的页面采用服务端渲染是更保险的。而在当时还没有node.js的年代，为了良好地构建前端页面，都是通过服务端语言对应的模板引擎来实现动态网页、页面结构的组织、组件的复用。比如Laravel的blade，用在Django上的jinja2，用在Struts的jsp等等。实际上到如今，一门后端语言想要能实现自己的web功能，都需要有自己对应的模板引擎。</p>
+<p>node.js诞生之后，前端拥有自己的后端渲染的模板引擎也成为了现实。常见的比如pug、ejs、nunjucks等。这些模板引擎搭配Express、Koa等后端框架也在一开始风靡一时。</p>
+<p>不过在这个过程中，随着web应用的开发越来越复杂，单纯服务端渲染的问题开始慢慢的暴露出来了——耦合性太强了，jQuery时代的页面不好维护，页面切换白屏严重等等。耦合性问题虽然能通过良好的代码结构、规范来解决，不过jQuery时代的页面不好维护这是有目共睹的，全局变量满天飞，代码入侵性太高。后续的维护通常是在给前面的代码打补丁。而页面切换的白屏问题虽然可以通过ajax、或者iframe等来解决，但是在实现上就麻烦了——进一步增加了可维护的难度。</p>
+<p>于是，我们开始进入了前端路由的时代。</p>
+        
+          <a class="article-more-a" href="/2018/09/18/后端路由与前端路由/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">路由</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSR</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">前后端渲染</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <span id="busuanzi_container_page_pv">
+        |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/18/后端路由与前端路由/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+  
     <article id="post-Angular重点笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -195,7 +319,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">           .state(<span class="string">"login"</span>, &#123;</span><br><span class="line">               url: <span class="string">"/login"</span>,</span><br><span class="line">               templateUrl: <span class="string">"views/login.html"</span>,</span><br><span class="line">               controller: <span class="string">"LoginController"</span>,</span><br><span class="line">               dependencies: [<span class="string">"controllers/LoginController"</span>]</span><br><span class="line">               resolve: &#123;</span><br><span class="line">                   deps: [<span class="string">"$q"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$q</span>) </span>&#123;</span><br><span class="line">                        <span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line">                       <span class="comment">//异步加载controllers/LoginController</span></span><br><span class="line">                       <span class="built_in">require</span>([<span class="string">"controllers/LoginController"</span>],<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">                         deferred.resolve(); </span><br><span class="line">                 &#125;);</span><br><span class="line">                       <span class="keyword">return</span> deferred.promise;</span><br><span class="line">                   &#125;]</span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure>
 <p>前文说了lazy()按需加载，那么之后创建的js文件，即可使用lazy()来注册</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> app.lazy.controller(<span class="string">"competitionStatisticsController"</span>, controller);</span><br></pre></td></tr></table></figure>
-<p>点击展开全文&gt;&gt;</p>
+        
+          <a class="article-more-a" href="/2018/09/13/Angular重点笔记/#more">more >></a>
         
       
 
@@ -294,7 +419,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/wx/onlogin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> code = req.query.code</span><br><span class="line">  request.get(&#123;</span><br><span class="line">    uri: <span class="string">'https://api.weixin.qq.com/sns/jscode2session'</span>,</span><br><span class="line">    json: <span class="literal">true</span>,</span><br><span class="line">    qs: &#123;</span><br><span class="line">      grant_type: <span class="string">'authorization_code'</span>,</span><br><span class="line">      appid: <span class="string">'你小程序的APPID'</span>,</span><br><span class="line">      secret: <span class="string">'你小程序的SECRET'</span>,</span><br><span class="line">      js_code: code</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, (err, response, data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (response.statusCode === <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[openid]"</span>, data.openid)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[session_key]"</span>, data.session_key)</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//<span class="doctag">TODO:</span> 生成一个唯一字符串sessionid作为键，将openid和session_key作为值，存入redis，超时时间设置为2小时</span></span><br><span class="line">      <span class="comment">//伪代码: redisStore.set(sessionid, openid + session_key, 7200)</span></span><br><span class="line"> </span><br><span class="line">      res.json(&#123; <span class="attr">sessionid</span>: sessionid &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[error]"</span>, err)</span><br><span class="line">      res.json(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>这段后台代码成功执行的话，就可以得到openid和session_key。这个信息就是当前微信账户在微信服务器那边的登录态了。</p>
 <p>但是，为了安全方面的原因，请不要直接使用这些信息作为你小程序的用户标识和session标识回传到小程序客户端中去，<strong>我们应该在服务器端做一层自己的session，将这个微信账号登录态生成一个session id并维护在我们自己的session机制中，然后把这个session id派发到小程序客户端作为session标识来使用</strong>。</p>
-<p>点击展开全文&gt;&gt;</p>
+        
+          <a class="article-more-a" href="/2018/09/12/小程序/#more">more >></a>
         
       
 
@@ -438,9 +564,8 @@
 <p><strong>所以，为了避免糊涂，尽量使用module.exports导出数据。</strong></p>
 </li>
 </ul>
-</li>
-</ul>
-<p>点击展开全文&gt;&gt;</p>
+        
+          <a class="article-more-a" href="/2018/09/10/前端模块化总结/#more">more >></a>
         
       
 
@@ -609,6 +734,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
@@ -617,11 +750,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+                <a href="javascript:void(0)" class="js-tag color3">路由</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
               </li>
             
             <div class="clearfix"></div>

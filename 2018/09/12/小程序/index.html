@@ -17,7 +17,7 @@
 <meta property="og:description" content="1.小程序登录  数据流梗概：   1.客户端登录（产生res.code）   2.APP服务端（持有appid\appsecret）   3.微信服务（appid+appsecret+res.code换取sessionKey、openid、unionid)   4.APP服务端（存储微信服务返回的openId、unionid等，产生自定义的sessionId）-&amp;gt;   5.客户端登录完成（">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="/images/小程序授权.png">
-<meta property="og:updated_time" content="2018-09-13T13:56:47.738Z">
+<meta property="og:updated_time" content="2018-09-18T14:26:05.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序开发重点解析">
 <meta name="twitter:description" content="1.小程序登录  数据流梗概：   1.客户端登录（产生res.code）   2.APP服务端（持有appid\appsecret）   3.微信服务（appid+appsecret+res.code换取sessionKey、openid、unionid)   4.APP服务端（存储微信服务返回的openId、unionid等，产生自定义的sessionId）-&amp;gt;   5.客户端登录完成（">
@@ -193,7 +193,6 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/wx/onlogin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> code = req.query.code</span><br><span class="line">  request.get(&#123;</span><br><span class="line">    uri: <span class="string">'https://api.weixin.qq.com/sns/jscode2session'</span>,</span><br><span class="line">    json: <span class="literal">true</span>,</span><br><span class="line">    qs: &#123;</span><br><span class="line">      grant_type: <span class="string">'authorization_code'</span>,</span><br><span class="line">      appid: <span class="string">'你小程序的APPID'</span>,</span><br><span class="line">      secret: <span class="string">'你小程序的SECRET'</span>,</span><br><span class="line">      js_code: code</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, (err, response, data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (response.statusCode === <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[openid]"</span>, data.openid)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[session_key]"</span>, data.session_key)</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//<span class="doctag">TODO:</span> 生成一个唯一字符串sessionid作为键，将openid和session_key作为值，存入redis，超时时间设置为2小时</span></span><br><span class="line">      <span class="comment">//伪代码: redisStore.set(sessionid, openid + session_key, 7200)</span></span><br><span class="line"> </span><br><span class="line">      res.json(&#123; <span class="attr">sessionid</span>: sessionid &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[error]"</span>, err)</span><br><span class="line">      res.json(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>这段后台代码成功执行的话，就可以得到openid和session_key。这个信息就是当前微信账户在微信服务器那边的登录态了。</p>
 <p>但是，为了安全方面的原因，请不要直接使用这些信息作为你小程序的用户标识和session标识回传到小程序客户端中去，<strong>我们应该在服务器端做一层自己的session，将这个微信账号登录态生成一个session id并维护在我们自己的session机制中，然后把这个session id派发到小程序客户端作为session标识来使用</strong>。</p>
-<p>点击展开全文&gt;&gt;</p>
  <a id="more"></a>
 <p>关于如何在服务器端做这个session机制，我们现在一般采用键值对存储工具来做，比如redis。我们为每个session生成一个唯一的字符串作为键，然后可以将session_key和openid作为值，存入redis中，为了安全，存入的时候还应设置一个超时的时间。</p>
 <p>开发Web应用的时候，在客户端（浏览器）中，<strong>我们通常将session id存放在cookie中，但是小程序没有cookie机制，所以不能采用cookie了，但是小程序有本地的storage，所以我们可以使用storage来保存sessionid，以供后续的后台API调用所使用。</strong></p>
@@ -551,6 +550,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小程序</a>
               </li>
              
@@ -559,11 +566,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+                <a href="javascript:void(0)" class="js-tag color3">路由</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+                <a href="javascript:void(0)" class="js-tag color4">SSR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
               </li>
             
             <div class="clearfix"></div>
