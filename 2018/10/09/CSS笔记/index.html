@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="">
-  <title>Archives | 欧先森</title>
+  <title>欧先森</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
+  <meta name="description" content="1.CSS实现实心三角形和空心三角形原理： 1.给一个div，宽和高都为0的时候，盒子什么都没有看起来。为空白 2.给一个宽高为0的盒子给一遍像素给100px的上边，下边和右边， 12345678910.jiao&amp;#123;  position: relative;  //box-sizing: border-box;  height: 0px;  width: 0px;  //border: 1">
 <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="欧先森">
-<meta property="og:url" content="/archives/index.html">
+<meta property="og:url" content="/2018/10/09/CSS笔记/index.html">
 <meta property="og:site_name" content="欧先森">
-<meta property="og:description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
+<meta property="og:description" content="1.CSS实现实心三角形和空心三角形原理： 1.给一个div，宽和高都为0的时候，盒子什么都没有看起来。为空白 2.给一个宽高为0的盒子给一遍像素给100px的上边，下边和右边， 12345678910.jiao&amp;#123;  position: relative;  //box-sizing: border-box;  height: 0px;  width: 0px;  //border: 1">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="c:/Users/Administrator/Desktop/正在写的笔记/1537083275520.png">
+<meta property="og:image" content="c:/Users/Administrator/Desktop/正在写的笔记/1537083482483.png">
+<meta property="og:image" content="c:/Users/Administrator/Desktop/正在写的笔记/1537084901663.png">
+<meta property="og:updated_time" content="2018-09-16T11:50:22.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="欧先森">
-<meta name="twitter:description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
+<meta name="twitter:description" content="1.CSS实现实心三角形和空心三角形原理： 1.给一个div，宽和高都为0的时候，盒子什么都没有看起来。为空白 2.给一个宽高为0的盒子给一遍像素给100px的上边，下边和右边， 12345678910.jiao&amp;#123;  position: relative;  //box-sizing: border-box;  height: 0px;  width: 0px;  //border: 1">
+<meta name="twitter:image" content="c:/Users/Administrator/Desktop/正在写的笔记/1537083275520.png">
   
     <link rel="alternative" href="/atom.xml" title="欧先森" type="application/atom+xml">
   
@@ -158,207 +163,212 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CSS笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-CSS实现实心三角形和空心三角形"><a href="#1-CSS实现实心三角形和空心三角形" class="headerlink" title="1.CSS实现实心三角形和空心三角形"></a>1.<a href="https://blog.csdn.net/qq_34645412/article/details/78062304" target="_blank" rel="noopener">CSS实现实心三角形和空心三角形</a></h2><p>原理：</p>
+<p>1.给一个div，宽和高都为0的时候，盒子什么都没有看起来。为空白</p>
+<p>2.给一个宽高为0的盒子给一遍像素给100px的上边，下边和右边，</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.jiao</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  //box-sizing: border-box;</span><br><span class="line">  <span class="selector-tag">height</span>: 0<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">width</span>: 0<span class="selector-tag">px</span>;</span><br><span class="line">  //border: 10px solid red;</span><br><span class="line">  <span class="selector-tag">border-top</span>: 90<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">red</span>;</span><br><span class="line">  <span class="selector-tag">border-right</span>: 100<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">black</span>;</span><br><span class="line">  <span class="selector-tag">border-bottom</span>: 100<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">blue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样左边没有，就会缩成一个点</p>
+<p>效果：<img src="C:\Users\Administrator\Desktop\正在写的笔记\1537083275520.png" alt="1537083275520"></p>
+<p>把上边框与下边框设置为透明时，</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.jiao</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">90px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">100px</span> solid black;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">100px</span> solid transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下图所示</p>
+<p><img src="C:\Users\Administrator\Desktop\正在写的笔记\1537083482483.png" alt="1537083482483"></p>
+<p>这样一个实心的三角新就出来了，</p>
+<p>空心的三角形呢同理，在当前的三角形后面添加一个一个实心三角形，然后将这个三角形绝对定位到当前三角行的位置切割</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.jiao</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: -<span class="number">89px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">2px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">89px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">99px</span> solid <span class="number">#FFFFFF</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">99px</span> solid transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="C:\Users\Administrator\Desktop\正在写的笔记\1537084901663.png" alt="1537084901663"></p>
+<h2 id="2-元素的水平居中与垂直居中"><a href="#2-元素的水平居中与垂直居中" class="headerlink" title="2.元素的水平居中与垂直居中"></a>2.元素的水平居中与垂直居中</h2><h3 id="2-1-水平居中"><a href="#2-1-水平居中" class="headerlink" title="2.1 水平居中"></a>2.1 水平居中</h3><p><strong>1. 如果是行级元素，对其父元素设置 text-align:center</strong></p>
+<p><strong>2. 块级元素：margin:auto</strong></p>
+<p><strong>3. 块级元素还可采用绝对定位的方式来实现</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attribute">position</span>:absoulte;</span><br><span class="line"><span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">margin-left；-自身元素宽度的一半</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>4.对于自适应的块级元素来说，前面两种方法可能无效，需要用到 css3的transform(变形)</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">position</span>:absoulte;</span><br><span class="line"></span><br><span class="line"><span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">transform</span>:<span class="built_in">translateX</span>(-50%);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在translateX变形函数中使用百分比，是以该元素自身的宽度为基准进行换算的，所以即使元素宽度不固定，也能实现水平居中，达到自适应的效果。</p>
+<h2 id="2-2-垂直居中"><a href="#2-2-垂直居中" class="headerlink" title="2.2 垂直居中"></a>2.2 垂直居中</h2><h3 id="2-2-1-行级元素"><a href="#2-2-1-行级元素" class="headerlink" title="2.2.1 行级元素"></a>2.2.1 行级元素</h3><p><strong>1. 单行文本垂直居中：设置高度和行高一致即可</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs"</span>&gt;</span>单行文本垂直居中<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">.cs&#123;</span><br><span class="line">	width:300px</span><br><span class="line">    height:50px;</span><br><span class="line">    line-height:50px;</span><br><span class="line">    text-align:center;//水平居中</span><br><span class="line">    border:1px solid #ccc;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2. 多行文本框</strong></p>
+<ul>
+<li><p>不固定高度的垂直居中：设置padding:50%</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs"</span>&gt;</span>天上白玉京，十二楼五城，仙人抚我顶，结发授长生。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">.cs&#123;</span><br><span class="line">    width:200px;</span><br><span class="line">    padding:50%;</span><br><span class="line">    border:1px solid #ccc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>固定高度的多行文本， 把父元素的dispaly设置为table，把自身设置为表格中的一个单元格，再配合vertical-align来实现。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pa"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs"</span>&gt;</span>天上白玉京，十二楼五城，仙人抚我顶，结发授长生。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">.pa&#123;</span><br><span class="line">    height:200px;</span><br><span class="line">    display:table;</span><br><span class="line">&#125;</span><br><span class="line">.cs&#123;</span><br><span class="line">	display:table-cell;</span><br><span class="line">    width:400px;</span><br><span class="line">   vertical-align;cengter;</span><br><span class="line">    border:1px solid #ccc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-2-2-块级元素"><a href="#2-2-2-块级元素" class="headerlink" title="2.2.2 块级元素"></a>2.2.2 块级元素</h3><ul>
+<li>绝对定位， top；50% 然后用margin移动自身高度的一半</li>
+<li>对于自适应的元素，绝对定位， top；50% ，然后用transform:translate()来进行移动</li>
+<li>方法3：基于视口单位</li>
+<li>方法4：基于flexbox的解决方案（弹性布局）</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/09/CSS笔记/" class="archive-article-date">
-  	<time datetime="2018-10-09T11:57:50.570Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-09</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      <span id="busuanzi_container_page_pv">
+        |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:/2018/10/09/CSS笔记/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/18/后端路由与前端路由/" class="archive-article-date">
-  	<time datetime="2018-09-18T14:13:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-18</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/18/后端路由与前端路由/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅谈前后端路由与前后端渲染</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/18/后端路由与前端路由/">浅谈前后端路由与前后端渲染</a>
-    </h1>
+        
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">路由</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSR</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">前后端渲染</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/13/Angular重点笔记/" class="archive-article-date">
-  	<time datetime="2018-09-13T13:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/13/Angular重点笔记/">Angular重点笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/12/小程序/" class="archive-article-date">
-  	<time datetime="2018-09-12T11:00:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/12/小程序/">小程序开发重点解析</a>
-    </h1>
+  <div id="SOHUCS" sid="CSS笔记" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytp76zpY",
+        conf: "88b2e7c64054efc94c0e2ade8d2d6e7b"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">获取用户信息</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/10/前端模块化总结/" class="archive-article-date">
-  	<time datetime="2018-09-10T13:26:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/10/前端模块化总结/">前端模块化总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">模块化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+
+
 
 
           </div>
@@ -390,8 +400,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
