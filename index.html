@@ -160,26 +160,137 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-CSS笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-文件上传与下载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/14/文件上传与下载/">文件上传与下载</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/14/文件上传与下载/" class="archive-article-date">
+  	<time datetime="2019-02-14T15:03:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-14</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-CSS实现实心三角形和空心三角形"><a href="#1-CSS实现实心三角形和空心三角形" class="headerlink" title="1.CSS实现实心三角形和空心三角形"></a>1.<a href="https://blog.csdn.net/qq_34645412/article/details/78062304" target="_blank" rel="noopener">CSS实现实心三角形和空心三角形</a></h2><p>原理：</p>
+        <h1 id="vue项目常用技术点"><a href="#vue项目常用技术点" class="headerlink" title="vue项目常用技术点"></a>vue项目常用技术点</h1><p>请求:axios</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 下载文件</span><br><span class="line"><span class="keyword">let</span> Get = <span class="function"><span class="keyword">function</span> (<span class="params">url, model, config</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 去除对象内空值null,undefined,''</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> model) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!model[key]) &#123;</span><br><span class="line">      <span class="keyword">delete</span> model[key]</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (model[key] === <span class="string">'-1'</span>) &#123;</span><br><span class="line">      <span class="keyword">delete</span> model[key]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    axios.get(getBaseUrl() + url, <span class="built_in">Object</span>.assign(&#123;</span><br><span class="line">      params: model</span><br><span class="line">    &#125;, config)).then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">      resolve(response.data)</span><br><span class="line">    &#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">      reject(err)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> GetFile = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">url, model, fileName</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="keyword">async</span> (resolve, reject) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> response = <span class="keyword">await</span> <span class="keyword">this</span>.Get(url, model, &#123;<span class="attr">responseType</span>: <span class="string">'arraybuffer'</span>&#125;)</span><br><span class="line">      <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob([response])</span><br><span class="line">      <span class="keyword">if</span> (<span class="string">'download'</span> <span class="keyword">in</span> <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)) &#123; <span class="comment">// 非IE下载</span></span><br><span class="line">        <span class="keyword">const</span> elink = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">        elink.download = fileName</span><br><span class="line">        elink.style.display = <span class="string">'none'</span></span><br><span class="line">        elink.href = URL.createObjectURL(blob)</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(elink)</span><br><span class="line">        elink.click()</span><br><span class="line">        URL.revokeObjectURL(elink.href)</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(elink)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        navigator.msSaveBlob(blob, fileName)</span><br><span class="line">      &#125;</span><br><span class="line">      resolve(<span class="literal">true</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      reject(e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="angular-1-常用技术点"><a href="#angular-1-常用技术点" class="headerlink" title="angular 1 常用技术点"></a>angular 1 常用技术点</h1><p>文件上传与下载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">先在页面上写入文件上传按钮</span><br><span class="line">&lt;input id=<span class="string">"excel-uploader"</span> type=<span class="string">"file"</span> style=<span class="string">"display: none;"</span> accept=<span class="string">".xls,.xlsx"</span>&gt;</span><br><span class="line"></span><br><span class="line">js.</span><br><span class="line">  <span class="keyword">var</span> $uploader = $(<span class="string">'#excel-uploader'</span>);  <span class="comment">//获取DOM</span></span><br><span class="line"> </span><br><span class="line">  <span class="comment">//事件触发</span></span><br><span class="line">   $uploader.on(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            angular.forEach(<span class="keyword">this</span>.files, updateFile);</span><br><span class="line">            <span class="keyword">this</span>.value = <span class="string">''</span>;</span><br><span class="line">            <span class="keyword">this</span>.files.length = <span class="number">0</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">updateFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">            upload(file);</span><br><span class="line">        &#125;</span><br><span class="line">  <span class="comment">// 发送数据</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> UPDATE_FILE_URL = CivilizedUnitResource.getBaseUrl()+ <span class="string">"importCivilizedUinit"</span>;</span><br><span class="line">            <span class="keyword">var</span> file1 = <span class="built_in">document</span>.querySelector(<span class="string">'input[type=file]'</span>).files[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">var</span> formData = <span class="keyword">new</span> FormData();</span><br><span class="line">            formData.append(<span class="string">"file"</span>, file1);</span><br><span class="line">            $http.post(UPDATE_FILE_URL, formData, &#123;</span><br><span class="line">                transformRequest: angular.identity,</span><br><span class="line">                headers: &#123;</span><br><span class="line">                    <span class="string">"Content-Type"</span>: <span class="literal">undefined</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                init()</span><br><span class="line">                <span class="keyword">if</span> (data) &#123;</span><br><span class="line">                    <span class="keyword">let</span> mes = <span class="string">''</span></span><br><span class="line">                    <span class="keyword">for</span>( <span class="keyword">let</span> i <span class="keyword">in</span> data)&#123;</span><br><span class="line">                        mes += data[i]</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// if (data.startsWith("!")) &#123;</span></span><br><span class="line">                        TipsService.show(mes);</span><br><span class="line">                    <span class="comment">// &#125;</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//导入成功刷新列表数据</span></span><br><span class="line"></span><br><span class="line">            &#125;).error(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                TipsService.show(<span class="string">"导入失败"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">//文件下载： 创建a标签     </span></span><br><span class="line">        $scope.exportexcel = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> save_link = <span class="built_in">document</span>.createElementNS(<span class="string">'http://www.w3.org/1999/xhtml'</span>, <span class="string">'a'</span>);</span><br><span class="line">            save_link.href = <span class="string">"restful/spiritCivilized/exportCivilizedUinitList "</span>;</span><br><span class="line">            save_link.download = <span class="string">"文明单位信息列表.xls"</span>;</span><br><span class="line">            <span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(<span class="string">'MouseEvents'</span>);</span><br><span class="line">            event.initMouseEvent(<span class="string">'click'</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="built_in">window</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="number">0</span>, <span class="literal">null</span>);</span><br><span class="line">            save_link.dispatchEvent(event);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2019/02/14/文件上传与下载/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">下载</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">上传</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <span id="busuanzi_container_page_pv">
+        |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/14/文件上传与下载/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+  
+    <article id="post-css总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/14/css总结/">css总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/14/css总结/" class="archive-article-date">
+  	<time datetime="2019-02-14T14:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-CSS实现实心三角形和空心三角形"><a href="#1-CSS实现实心三角形和空心三角形" class="headerlink" title="1.CSS实现实心三角形和空心三角形"></a>1.CSS实现实心三角形和空心三角形</h2><p>原理：</p>
 <p>1.给一个div，宽和高都为0的时候，盒子什么都没有看起来。为空白</p>
 <p>2.给一个宽高为0的盒子给一遍像素给100px的上边，下边和右边，</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.jiao</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  //box-sizing: border-box;</span><br><span class="line">  <span class="selector-tag">height</span>: 0<span class="selector-tag">px</span>;</span><br><span class="line">  <span class="selector-tag">width</span>: 0<span class="selector-tag">px</span>;</span><br><span class="line">  //border: 10px solid red;</span><br><span class="line">  <span class="selector-tag">border-top</span>: 90<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">red</span>;</span><br><span class="line">  <span class="selector-tag">border-right</span>: 100<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">black</span>;</span><br><span class="line">  <span class="selector-tag">border-bottom</span>: 100<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">blue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样左边没有，就会缩成一个点</p>
-<p>效果：<img src="C:\Users\Administrator\Desktop\正在写的笔记\1537083275520.png" alt="1537083275520"></p>
+<p>效果：<img src="https://image.catac.cn/1537083275520.png" alt="1537083275520"></p>
 <p>把上边框与下边框设置为透明时，</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.jiao</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">90px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">100px</span> solid black;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">100px</span> solid transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如下图所示</p>
-<p><img src="C:\Users\Administrator\Desktop\正在写的笔记\1537083482483.png" alt="1537083482483"></p>
+<p><img src="https://image.catac.cn/1537083482483.png" alt="1537083482483"></p>
 <p>这样一个实心的三角新就出来了，</p>
 <p>空心的三角形呢同理，在当前的三角形后面添加一个一个实心三角形，然后将这个三角形绝对定位到当前三角行的位置切割</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.jiao</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: -<span class="number">89px</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">2px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">89px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">99px</span> solid <span class="number">#FFFFFF</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">99px</span> solid transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
-<p><img src="C:\Users\Administrator\Desktop\正在写的笔记\1537084901663.png" alt="1537084901663"></p>
+<p><img src="https://image.catac.cn/1537084901663.png" alt="1537084901663"></p>
 <h2 id="2-元素的水平居中与垂直居中"><a href="#2-元素的水平居中与垂直居中" class="headerlink" title="2.元素的水平居中与垂直居中"></a>2.元素的水平居中与垂直居中</h2><h3 id="2-1-水平居中"><a href="#2-1-水平居中" class="headerlink" title="2.1 水平居中"></a>2.1 水平居中</h3><p><strong>1. 如果是行级元素，对其父元素设置 text-align:center</strong></p>
 <p><strong>2. 块级元素：margin:auto</strong></p>
 <p><strong>3. 块级元素还可采用绝对定位的方式来实现</strong></p>
@@ -187,7 +298,7 @@
 <p><strong>4.对于自适应的块级元素来说，前面两种方法可能无效，需要用到 css3的transform(变形)</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"><span class="attribute">position</span>:absoulte;</span><br><span class="line"></span><br><span class="line"><span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">transform</span>:<span class="built_in">translateX</span>(-50%);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在translateX变形函数中使用百分比，是以该元素自身的宽度为基准进行换算的，所以即使元素宽度不固定，也能实现水平居中，达到自适应的效果。</p>
-<h2 id="2-2-垂直居中"><a href="#2-2-垂直居中" class="headerlink" title="2.2 垂直居中"></a>2.2 垂直居中</h2><h3 id="2-2-1-行级元素"><a href="#2-2-1-行级元素" class="headerlink" title="2.2.1 行级元素"></a>2.2.1 行级元素</h3><p><strong>1. 单行文本垂直居中：设置高度和行高一致即可</strong></p>
+<h3 id="2-2-垂直居中"><a href="#2-2-垂直居中" class="headerlink" title="2.2 垂直居中"></a>2.2 垂直居中</h3><h4 id="2-2-1-行级元素"><a href="#2-2-1-行级元素" class="headerlink" title="2.2.1 行级元素"></a>2.2.1 行级元素</h4><p><strong>1. 单行文本垂直居中：设置高度和行高一致即可</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs"</span>&gt;</span>单行文本垂直居中<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">.cs&#123;</span><br><span class="line">	width:300px</span><br><span class="line">    height:50px;</span><br><span class="line">    line-height:50px;</span><br><span class="line">    text-align:center;//水平居中</span><br><span class="line">    border:1px solid #ccc;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>2. 多行文本框</strong></p>
 <ul>
@@ -198,13 +309,14 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pa"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cs"</span>&gt;</span>天上白玉京，十二楼五城，仙人抚我顶，结发授长生。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">.pa&#123;</span><br><span class="line">    height:200px;</span><br><span class="line">    display:table;</span><br><span class="line">&#125;</span><br><span class="line">.cs&#123;</span><br><span class="line">	display:table-cell;</span><br><span class="line">    width:400px;</span><br><span class="line">   vertical-align;cengter;</span><br><span class="line">    border:1px solid #ccc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="2-2-2-块级元素"><a href="#2-2-2-块级元素" class="headerlink" title="2.2.2 块级元素"></a>2.2.2 块级元素</h3><ul>
+<h4 id="2-2-2-块级元素"><a href="#2-2-2-块级元素" class="headerlink" title="2.2.2 块级元素"></a>2.2.2 块级元素</h4><ul>
 <li>绝对定位， top；50% 然后用margin移动自身高度的一半</li>
 <li>对于自适应的元素，绝对定位， top；50% ，然后用transform:translate()来进行移动</li>
 <li>方法3：基于视口单位</li>
-<li>方法4：基于flexbox的解决方案（弹性布局）</li>
-</ul>
-
+<li><p>方法4：基于flexbox的解决方案（弹性布局）</p>
+        
+          <a class="article-more-a" href="/2019/02/14/css总结/#more">more >></a>
+        
       
 
       
@@ -212,6 +324,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       <span id="busuanzi_container_page_pv">
         |阅读量(<span id="busuanzi_value_page_pv"></span>)
       </span>
@@ -219,7 +342,130 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/09/CSS笔记/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/02/14/css总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+  
+    <article id="post-悦动在线小程序总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/18/悦动在线小程序总结/">悦动在线小程序总结</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/18/悦动在线小程序总结/" class="archive-article-date">
+  	<time datetime="2018-11-18T11:40:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-项目规划"><a href="#1-项目规划" class="headerlink" title="1. 项目规划"></a>1. 项目规划</h2><p>本项目为基于微信手机应用平台的一款运动互动型小程序，<strong>实现了用户即时运动步数群内PK与个人动态的发布</strong>，<strong>小程序前端采用原生框架，后端采用基于Node的koa2框架，数据库采用MYSQL，对象存储采用七牛云，服务器采用阿里ECS，域名采用CA认证。</strong></p>
+<p>运行效果如下</p>
+<video id="video" controls preload="none" poster="https://image.catac.cn/%E6%82%A6%E5%8A%A8%E5%9C%A8%E7%BA%BF%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4"><br><source id="mp4" src="https://image.catac.cn/%E6%82%A6%E5%8A%A8%E5%9C%A8%E7%BA%BF%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4" type="video/mp4"><br></video>
+
+
+<h2 id="2-支撑技术点分析"><a href="#2-支撑技术点分析" class="headerlink" title="2. 支撑技术点分析"></a>2. 支撑技术点分析</h2><h3 id="2-1-七牛云存储"><a href="#2-1-七牛云存储" class="headerlink" title="2.1 七牛云存储"></a>2.1 七牛云存储</h3><p>在这个项目中，有个功能为动态发布，允许用户上传图片，动态发布后，所有人可在动态广场看到该动态，存储图片有很多方式，例如通过表单将文件转为为二级制发送给后端，然后存数据库中，但是，这样我就要多写很多代码，所有我决定将图片存储到图床，我数据库中保存图片链接即可，图床有很多，不一一描述了，我这次用的是七牛云，个人认证成功后将获得一定空间的免费存储空间。</p>
+<p>建立存储空间（ydonline），选定存储区域(华北)。</p>
+<p><img src="https://image.catac.cn/七牛云列表.PNG" alt=""></p>
+<p>注册成功后，将获得两组秘钥，这东西很重要，上传文件时，需要知道<strong>uptoken</strong>，uptoken是根据AK与SC生成的，<strong>七牛云开发文档中建议后端生成uptoken值</strong>，但我嫌麻烦，直接在线生成了uptoken，也就是说该uptoken是写死的。 </p>
+<p><strong>uptoken生成地址：<a href="http://pchou.qiniudn.com/qiniutool/uptoken.html" target="_blank" rel="noopener">http://pchou.qiniudn.com/qiniutool/uptoken.html</a> deadline的时间设置长一些</strong></p>
+<p><img src="https://image.catac.cn/七牛云秘钥.PNG" alt=""></p>
+<p><strong>引入官方开发文件：qiniuUploader.js</strong></p>
+<p><strong>小程序端存储图片关键代码：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">releaseNotice.js</span><br><span class="line"><span class="keyword">const</span> qiniuUploader = <span class="built_in">require</span>(<span class="string">"qiniuUploader.js"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">didPressChooesImage</span>(<span class="params">that</span>) </span>&#123;</span><br><span class="line">  initQiniu();</span><br><span class="line">  <span class="comment">// 微信 API 选文件</span></span><br><span class="line">  wx.chooseImage(&#123;</span><br><span class="line">    count: <span class="number">1</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> filePath = res.tempFilePaths[<span class="number">0</span>];</span><br><span class="line">      <span class="comment">// 交给七牛上传</span></span><br><span class="line">      qiniuUploader.upload(filePath, (res) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> imageurl = that.data.imageurl;</span><br><span class="line">        imageurl.push(getApp().data.qiniu_domain + res.key);</span><br><span class="line">        that.setData(&#123;</span><br><span class="line">          <span class="string">'imageurl'</span>: imageurl</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, (error) =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.error(<span class="string">'error: '</span> + <span class="built_in">JSON</span>.stringify(error));</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initQiniu</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//配置详解 https://github.com/gpake/qiniu-wxapp-sdk/blob/master/README.md</span></span><br><span class="line">  <span class="keyword">var</span> options = &#123;</span><br><span class="line">    region: <span class="string">'NCN'</span>, <span class="comment">// 华东区 根据存储区域填写</span></span><br><span class="line">    <span class="comment">//uptokenURL: 'UpTokenURL.com/uptoken',//// 从指定 url 通过 HTTP GET 获取 uptoken，返回的格式必须是 json 且包含 uptoken 字段，例如： &#123;"uptoken": "0MLvWPnyy..."&#125;</span></span><br><span class="line">    uptoken: getApp().data.qiniu_uptoken,</span><br><span class="line">    domain: getApp().data.qiniu_domain</span><br><span class="line">  &#125;;</span><br><span class="line">  qiniuUploader.init(options);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------------------  </span><br><span class="line">app.js</span><br><span class="line"></span><br><span class="line">App(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    qiniu_domain: <span class="string">'http://pgwn32i53.bkt.clouddn.com/'</span>,<span class="comment">//七牛图片外链域名</span></span><br><span class="line">    qiniu_uptoken: <span class="string">'uxQXOgxXDtF-1uM_V15KQSIky5Xkdww0GhoAksLF:LWUt0HMVbICEDaSOMnMF3YLoUH4=:eyJzY29wZSI6Inlkb25saW5lIiwiZGVhZGxpbmUiOjE4NTU2NzA0MDF9'</span></span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>上传文件到指定的存储空间，七牛会返回文件的key值，加上七牛给你的外链域名，这样，你就可以显示文件了。</p>
+<hr>
+<h3 id="2-2-服务器与域名"><a href="#2-2-服务器与域名" class="headerlink" title="2.2 服务器与域名"></a>2.2 服务器与域名</h3><p>我买过两次服务器，第一次是阿里的，另外一次也是阿里的。但这次，我买的是windows版云ECS ，首先，明确需求。</p>
+<ol>
+<li>远程连接部署项目（安装环境，运行后台，域名解析，外网访问）</li>
+<li>进行域名CA认证， 小程序的请求必须得是HTTPS。</li>
+</ol>
+<p>在windows 服务器上部署项目 简单， 远程链接时，选择共享本地某个硬盘的资料，连接成功后，把本地的环境软件全部安装上去，本次需要在服务器上安装 node.js、git、mysql这三个软件。</p>
+<p>购买SSL证书</p>
+<p><a href="https://yundunnext.console.aliyun.com/?p=casnext#/overview/cn-hangzhou" target="_blank" rel="noopener">https://yundunnext.console.aliyun.com/?p=casnext#/overview/cn-hangzhou</a></p>
+<p>阿里有对单域名免费的证书，时间为1年，于是我为该项目的域名购买了https。</p>
+<p><img src="https://image.catac.cn/已购SSl.PNG" alt=""></p>
+<p>点击下载 =&gt;选择 其他</p>
+<p><img src="https://image.catac.cn/证书下载.PNG" alt=""></p>
+<p>解压后，里面有两个文件，一个是crt，一个是key，将这两个文件发在后台文件夹下/ssl包下 （可随便命名）</p>
+<p>后台加载这两个文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.js 关键代码</span><br><span class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">    https = <span class="built_in">require</span>(<span class="string">'https'</span>);</span><br><span class="line">app=<span class="keyword">new</span> app();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">  key: fs.readFileSync(<span class="string">'./ssl/key.key'</span>),  <span class="comment">//ssl文件路径</span></span><br><span class="line">  cert: fs.readFileSync(<span class="string">'./ssl/crt.crt'</span>)  <span class="comment">//ssl文件路径</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// start the server</span></span><br><span class="line">https.createServer(options, app.callback()).listen(<span class="number">443</span>);</span><br></pre></td></tr></table></figure>
+<p>这样，后台就跑在htpps下了。</p>
+<p>在服务器上运行后台：</p>
+<p><img src="https://image.catac.cn/运行后台.PNG" alt=""></p>
+<p><strong>然后你用自己的电脑打开该域名，你会发现根本连接不上。</strong></p>
+        
+          <a class="article-more-a" href="/2018/11/18/悦动在线小程序总结/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <span id="busuanzi_container_page_pv">
+        |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/18/悦动在线小程序总结/">展开全文 >></a>
         </p>
       
 
@@ -741,7 +987,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-        &copy; 2018 欧先森
+        &copy; 2019 欧先森
         <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
         <span class="post-meta-divider">|</span>
@@ -833,11 +1079,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">模块化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+                <a href="javascript:void(0)" class="js-tag color3">下载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">

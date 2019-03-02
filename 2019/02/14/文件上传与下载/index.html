@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="">
-  <title>Archives | 欧先森</title>
+  <title>文件上传与下载 | 欧先森</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
-<meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="欧先森">
-<meta property="og:url" content="/archives/index.html">
+  <meta name="description" content="vue项目常用技术点请求:axios 1234567891011121314151617181920212223242526272829303132333435363738394041424344451. 下载文件let Get = function (url, model, config) &amp;#123;  // 去除对象内空值null,undefined,&apos;&apos;  for (const key i">
+<meta name="keywords" content="下载,上传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传与下载">
+<meta property="og:url" content="/2019/02/14/文件上传与下载/index.html">
 <meta property="og:site_name" content="欧先森">
-<meta property="og:description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
+<meta property="og:description" content="vue项目常用技术点请求:axios 1234567891011121314151617181920212223242526272829303132333435363738394041424344451. 下载文件let Get = function (url, model, config) &amp;#123;  // 去除对象内空值null,undefined,&apos;&apos;  for (const key i">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-14T15:08:44.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="欧先森">
-<meta name="twitter:description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
+<meta name="twitter:title" content="文件上传与下载">
+<meta name="twitter:description" content="vue项目常用技术点请求:axios 1234567891011121314151617181920212223242526272829303132333435363738394041424344451. 下载文件let Get = function (url, model, config) &amp;#123;  // 去除对象内空值null,undefined,&apos;&apos;  for (const key i">
   
     <link rel="alternative" href="/atom.xml" title="欧先森" type="application/atom+xml">
   
@@ -158,36 +159,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-文件上传与下载" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/14/文件上传与下载/" class="archive-article-date">
-  	<time datetime="2019-02-14T15:03:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/14/文件上传与下载/">文件上传与下载</a>
+    <h1 class="article-title" itemprop="name">
+      文件上传与下载
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/02/14/文件上传与下载/" class="archive-article-date">
+  	<time datetime="2019-02-14T15:03:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vue项目常用技术点"><a href="#vue项目常用技术点" class="headerlink" title="vue项目常用技术点"></a>vue项目常用技术点</h1><p>请求:axios</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 下载文件</span><br><span class="line"><span class="keyword">let</span> Get = <span class="function"><span class="keyword">function</span> (<span class="params">url, model, config</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 去除对象内空值null,undefined,''</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> model) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!model[key]) &#123;</span><br><span class="line">      <span class="keyword">delete</span> model[key]</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (model[key] === <span class="string">'-1'</span>) &#123;</span><br><span class="line">      <span class="keyword">delete</span> model[key]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    axios.get(getBaseUrl() + url, <span class="built_in">Object</span>.assign(&#123;</span><br><span class="line">      params: model</span><br><span class="line">    &#125;, config)).then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">      resolve(response.data)</span><br><span class="line">    &#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">      reject(err)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> GetFile = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">url, model, fileName</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="keyword">async</span> (resolve, reject) =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> response = <span class="keyword">await</span> <span class="keyword">this</span>.Get(url, model, &#123;<span class="attr">responseType</span>: <span class="string">'arraybuffer'</span>&#125;)</span><br><span class="line">      <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob([response])</span><br><span class="line">      <span class="keyword">if</span> (<span class="string">'download'</span> <span class="keyword">in</span> <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)) &#123; <span class="comment">// 非IE下载</span></span><br><span class="line">        <span class="keyword">const</span> elink = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">        elink.download = fileName</span><br><span class="line">        elink.style.display = <span class="string">'none'</span></span><br><span class="line">        elink.href = URL.createObjectURL(blob)</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(elink)</span><br><span class="line">        elink.click()</span><br><span class="line">        URL.revokeObjectURL(elink.href)</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(elink)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        navigator.msSaveBlob(blob, fileName)</span><br><span class="line">      &#125;</span><br><span class="line">      resolve(<span class="literal">true</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      reject(e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="angular-1-常用技术点"><a href="#angular-1-常用技术点" class="headerlink" title="angular 1 常用技术点"></a>angular 1 常用技术点</h1><p>文件上传与下载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">先在页面上写入文件上传按钮</span><br><span class="line">&lt;input id=<span class="string">"excel-uploader"</span> type=<span class="string">"file"</span> style=<span class="string">"display: none;"</span> accept=<span class="string">".xls,.xlsx"</span>&gt;</span><br><span class="line"></span><br><span class="line">js.</span><br><span class="line">  <span class="keyword">var</span> $uploader = $(<span class="string">'#excel-uploader'</span>);  <span class="comment">//获取DOM</span></span><br><span class="line"> </span><br><span class="line">  <span class="comment">//事件触发</span></span><br><span class="line">   $uploader.on(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            angular.forEach(<span class="keyword">this</span>.files, updateFile);</span><br><span class="line">            <span class="keyword">this</span>.value = <span class="string">''</span>;</span><br><span class="line">            <span class="keyword">this</span>.files.length = <span class="number">0</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">updateFile</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">            upload(file);</span><br><span class="line">        &#125;</span><br><span class="line">  <span class="comment">// 发送数据</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> UPDATE_FILE_URL = CivilizedUnitResource.getBaseUrl()+ <span class="string">"importCivilizedUinit"</span>;</span><br><span class="line">            <span class="keyword">var</span> file1 = <span class="built_in">document</span>.querySelector(<span class="string">'input[type=file]'</span>).files[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">var</span> formData = <span class="keyword">new</span> FormData();</span><br><span class="line">            formData.append(<span class="string">"file"</span>, file1);</span><br><span class="line">            $http.post(UPDATE_FILE_URL, formData, &#123;</span><br><span class="line">                transformRequest: angular.identity,</span><br><span class="line">                headers: &#123;</span><br><span class="line">                    <span class="string">"Content-Type"</span>: <span class="literal">undefined</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).success(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                init()</span><br><span class="line">                <span class="keyword">if</span> (data) &#123;</span><br><span class="line">                    <span class="keyword">let</span> mes = <span class="string">''</span></span><br><span class="line">                    <span class="keyword">for</span>( <span class="keyword">let</span> i <span class="keyword">in</span> data)&#123;</span><br><span class="line">                        mes += data[i]</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// if (data.startsWith("!")) &#123;</span></span><br><span class="line">                        TipsService.show(mes);</span><br><span class="line">                    <span class="comment">// &#125;</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//导入成功刷新列表数据</span></span><br><span class="line"></span><br><span class="line">            &#125;).error(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                TipsService.show(<span class="string">"导入失败"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">//文件下载： 创建a标签     </span></span><br><span class="line">        $scope.exportexcel = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> save_link = <span class="built_in">document</span>.createElementNS(<span class="string">'http://www.w3.org/1999/xhtml'</span>, <span class="string">'a'</span>);</span><br><span class="line">            save_link.href = <span class="string">"restful/spiritCivilized/exportCivilizedUinitList "</span>;</span><br><span class="line">            save_link.download = <span class="string">"文明单位信息列表.xls"</span>;</span><br><span class="line">            <span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(<span class="string">'MouseEvents'</span>);</span><br><span class="line">            event.initMouseEvent(<span class="string">'click'</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="built_in">window</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="number">0</span>, <span class="literal">null</span>);</span><br><span class="line">            save_link.dispatchEvent(event);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+ <a id="more"></a>
+<h1 id="移动端样式"><a href="#移动端样式" class="headerlink" title="移动端样式"></a>移动端样式</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">**vue  / main.js**</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 引入cordova</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.location.protocol === <span class="string">'file:'</span> || <span class="built_in">window</span>.location.port === <span class="string">'3000'</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> cordovaScript = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line">  cordovaScript.setAttribute(<span class="string">'type'</span>, <span class="string">'text/javascript'</span>)</span><br><span class="line">  cordovaScript.setAttribute(<span class="string">'src'</span>, <span class="string">'cordova.js'</span>)</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(cordovaScript)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * data-drp</span></span><br><span class="line"><span class="comment"> * 屏幕宽度：小【&lt;=960】1 中【&lt;=1280】1.2 大【&gt;=1280】1.4</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// let dpr = window.devicePixelRatio</span></span><br><span class="line"><span class="keyword">let</span> dpr = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> clientWidth = <span class="built_in">document</span>.documentElement.clientWidth</span><br><span class="line"><span class="keyword">if</span> (clientWidth &lt;= (<span class="number">960</span> / <span class="number">2</span>)) &#123;</span><br><span class="line">  dpr = <span class="number">1</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (clientWidth &lt;= (<span class="number">1280</span> / <span class="number">2</span>)) &#123;</span><br><span class="line">  dpr = <span class="number">2</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  dpr = <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.documentElement.setAttribute(<span class="string">'data-dpr'</span>, dpr)</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -203,269 +238,166 @@
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/14/css总结/" class="archive-article-date">
-  	<time datetime="2019-02-14T14:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/14/css总结/">css总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+      <span id="busuanzi_container_page_pv">
+        |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/18/悦动在线小程序总结/" class="archive-article-date">
-  	<time datetime="2018-11-18T11:40:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/18/悦动在线小程序总结/">悦动在线小程序总结</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:/2019/02/14/文件上传与下载/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+<!-- 目录内容 -->
+
+<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+  <span class="btn-bg"></span>
+  <span class="btn-text">文章导航</span>
+</p>
+<div id="toc-article" class="toc-article">
+  <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vue项目常用技术点"><span class="toc-number">1.</span> <span class="toc-text">vue项目常用技术点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#angular-1-常用技术点"><span class="toc-number">2.</span> <span class="toc-text">angular 1 常用技术点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#移动端样式"><span class="toc-number">3.</span> <span class="toc-text">移动端样式</span></a></li></ol>
+</div>
+<script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+  };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+  };
+</script>
+
+<!-- 目录内容结束 -->
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/18/后端路由与前端路由/" class="archive-article-date">
-  	<time datetime="2018-09-18T14:13:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-18</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/14/css总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">css总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/18/后端路由与前端路由/">浅谈前后端路由与前后端渲染</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">路由</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSR</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">前后端渲染</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vue项目常用技术点"><span class="toc-number">1.</span> <span class="toc-text">vue项目常用技术点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#angular-1-常用技术点"><span class="toc-number">2.</span> <span class="toc-text">angular 1 常用技术点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#移动端样式"><span class="toc-number">3.</span> <span class="toc-text">移动端样式</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/13/Angular重点笔记/" class="archive-article-date">
-  	<time datetime="2018-09-13T13:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/13/Angular重点笔记/">Angular重点笔记</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/12/小程序/" class="archive-article-date">
-  	<time datetime="2018-09-12T11:00:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/12/小程序/">小程序开发重点解析</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">获取用户信息</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/10/前端模块化总结/" class="archive-article-date">
-  	<time datetime="2018-09-10T13:26:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/10/前端模块化总结/">前端模块化总结</a>
-    </h1>
+  <div id="SOHUCS" sid="文件上传与下载" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytp76zpY",
+        conf: "88b2e7c64054efc94c0e2ade8d2d6e7b"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">模块化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+
+
 
 
           </div>
@@ -497,8 +429,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
