@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="">
-  <title>小程序开发重点解析 | 欧先森</title>
+  <title>Tag: 移动端 | 欧先森</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.小程序登录  数据流梗概：   1.客户端登录（产生res.code）   2.APP服务端（持有appid\appsecret）   3.微信服务（appid+appsecret+res.code换取sessionKey、openid、unionid)   4.APP服务端（存储微信服务返回的openId、unionid等，产生自定义的sessionId）-&amp;gt;   5.客户端登录完成（">
-<meta name="keywords" content="小程序,获取用户信息">
-<meta property="og:type" content="article">
-<meta property="og:title" content="小程序开发重点解析">
-<meta property="og:url" content="/2018/09/12/小程序/index.html">
+  <meta name="description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
+<meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="og:type" content="website">
+<meta property="og:title" content="欧先森">
+<meta property="og:url" content="/tags/移动端/index.html">
 <meta property="og:site_name" content="欧先森">
-<meta property="og:description" content="1.小程序登录  数据流梗概：   1.客户端登录（产生res.code）   2.APP服务端（持有appid\appsecret）   3.微信服务（appid+appsecret+res.code换取sessionKey、openid、unionid)   4.APP服务端（存储微信服务返回的openId、unionid等，产生自定义的sessionId）-&amp;gt;   5.客户端登录完成（">
+<meta property="og:description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="/images/小程序授权.png">
-<meta property="og:updated_time" content="2018-11-18T12:26:37.308Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小程序开发重点解析">
-<meta name="twitter:description" content="1.小程序登录  数据流梗概：   1.客户端登录（产生res.code）   2.APP服务端（持有appid\appsecret）   3.微信服务（appid+appsecret+res.code换取sessionKey、openid、unionid)   4.APP服务端（存储微信服务返回的openId、unionid等，产生自定义的sessionId）-&amp;gt;   5.客户端登录完成（">
-<meta name="twitter:image" content="/images/小程序授权.png">
+<meta name="twitter:title" content="欧先森">
+<meta name="twitter:description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
   
     <link rel="alternative" href="/atom.xml" title="欧先森" type="application/atom+xml">
   
@@ -161,294 +158,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-小程序" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      小程序开发重点解析
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/03/11/vue-WebAPP-cordova/" class="archive-article-date">
+  	<time datetime="2019-03-11T12:00:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/03/11/vue-WebAPP-cordova/">vue-WebAPP-cordova</a>
     </h1>
   
 
-        
-        <a href="/2018/09/12/小程序/" class="archive-article-date">
-  	<time datetime="2018-09-12T11:00:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-小程序登录"><a href="#1-小程序登录" class="headerlink" title="1.小程序登录"></a>1.小程序登录</h2><p>  <strong>数据流梗概：</strong></p>
-<p>  1.客户端登录（产生res.code）</p>
-<p>  2.APP服务端（持有appid\appsecret）</p>
-<p>  3.微信服务（appid+appsecret+res.code换取sessionKey、openid、unionid)</p>
-<p>  4.APP服务端（存储微信服务返回的openId、unionid等，产生自定义的sessionId）-&gt; </p>
-<p> 5.客户端登录完成（持有sessionId，每次请求发回服务端）</p>
-<p> <strong>小程序前端登陆：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> login = <span class="keyword">async</span>() =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="keyword">await</span> WXP.login()</span><br><span class="line">  <span class="keyword">let</span> token = <span class="keyword">await</span> http.request(&#123;</span><br><span class="line">    url: <span class="string">"/wx/onlogin"</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      code: res.code</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">    http.HEADERS.sessionCode = res.code</span><br><span class="line">  <span class="comment">// 将服务器返回的Set-Cookie命令内容保留起来，后续请求放到Cookie中带回，模拟浏览器Cookie的效果</span></span><br><span class="line">  <span class="keyword">let</span> cookies = token.header[<span class="string">"Set-Cookie"</span>]</span><br><span class="line">  <span class="keyword">if</span> (cookies) &#123;</span><br><span class="line">    http.setCookies(cookies)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 保存服务器返回的Session和关联用户状态信息</span></span><br><span class="line">  <span class="keyword">let</span> result = token.data.result</span><br><span class="line">  <span class="keyword">if</span> (result &amp;&amp; result.sessionId) &#123;</span><br><span class="line">    http.HEADERS.sessionId = result.sessionId</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`用户微信Session创建成功，code=<span class="subst">$&#123;res.code&#125;</span>，sessionId=<span class="subst">$&#123;http.HEADERS.sessionId&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">if</span> (result.bind) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`用户绑定成功：<span class="subst">$&#123;result.userVo.userName&#125;</span>`</span>);</span><br><span class="line">      session.realityUserInfo = result.userVo</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 即使用户没有关联，也应该产生sessionID，没有的话视同服务端异常</span></span><br><span class="line">    <span class="comment">// msgUtil.throwException("ERROR", "服务端登录验证异常，请重试", &#123;</span></span><br><span class="line">    <span class="comment">//   response: res,</span></span><br><span class="line">    <span class="comment">//   token</span></span><br><span class="line">    <span class="comment">// &#125;)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>后台代码:(注：非真实后端代码，但原理一样。)</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/wx/onlogin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> code = req.query.code</span><br><span class="line">  request.get(&#123;</span><br><span class="line">    uri: <span class="string">'https://api.weixin.qq.com/sns/jscode2session'</span>,</span><br><span class="line">    json: <span class="literal">true</span>,</span><br><span class="line">    qs: &#123;</span><br><span class="line">      grant_type: <span class="string">'authorization_code'</span>,</span><br><span class="line">      appid: <span class="string">'你小程序的APPID'</span>,</span><br><span class="line">      secret: <span class="string">'你小程序的SECRET'</span>,</span><br><span class="line">      js_code: code</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, (err, response, data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (response.statusCode === <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[openid]"</span>, data.openid)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[session_key]"</span>, data.session_key)</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//<span class="doctag">TODO:</span> 生成一个唯一字符串sessionid作为键，将openid和session_key作为值，存入redis，超时时间设置为2小时</span></span><br><span class="line">      <span class="comment">//伪代码: redisStore.set(sessionid, openid + session_key, 7200)</span></span><br><span class="line"> </span><br><span class="line">      res.json(&#123; <span class="attr">sessionid</span>: sessionid &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[error]"</span>, err)</span><br><span class="line">      res.json(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这段后台代码成功执行的话，就可以得到openid和session_key。这个信息就是当前微信账户在微信服务器那边的登录态了。</p>
-<p>但是，为了安全方面的原因，请不要直接使用这些信息作为你小程序的用户标识和session标识回传到小程序客户端中去，<strong>我们应该在服务器端做一层自己的session，将这个微信账号登录态生成一个session id并维护在我们自己的session机制中，然后把这个session id派发到小程序客户端作为session标识来使用</strong>。</p>
- <a id="more"></a>
-<p>关于如何在服务器端做这个session机制，我们现在一般采用键值对存储工具来做，比如redis。我们为每个session生成一个唯一的字符串作为键，然后可以将session_key和openid作为值，存入redis中，为了安全，存入的时候还应设置一个超时的时间。</p>
-<p>开发Web应用的时候，在客户端（浏览器）中，<strong>我们通常将session id存放在cookie中，但是小程序没有cookie机制，所以不能采用cookie了，但是小程序有本地的storage，所以我们可以使用storage来保存sessionid，以供后续的后台API调用所使用。</strong></p>
-<p>在之后，调用那些需要登录后才有权限的访问的后台服务时，你可以将保存在storage中的sessionid取出并携带在请求中（可以放在header中携带，也可以放在querystring中，或是放在body中，根据你自己的需要来使用），传递到后台服务，后台代码中获取到该sessionid后，从redis中查找是否有该sessionid存在，存在的话，即确认该session是有效的，继续后续的代码执行，否则进行错误处理。</p>
-<p><strong>这是一个需要session验证的后台服务示例，我的sessionid是放在header中传递的，所以在这个示例中，是从请求的header中获取sessionid：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/wx/products/list'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sessionid = req.header(<span class="string">"sessionid"</span>)</span><br><span class="line">  <span class="keyword">let</span> sessionVal = redisStore.get(sessionid)</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">if</span> (sessionVal) &#123;</span><br><span class="line">    <span class="comment">// 执行其他业务代码</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 执行错误处理</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>openID： 普通用户的标识，对当前开发者帐号唯一。一个openid对应一个公众号。</strong></p>
-<p><strong>UnionID ：用户统一标识。针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的。</strong></p>
-<p><strong>如果用户已经关注公众号，或者曾经登录过App或公众号，则用户打开小程序时，开发者可以直接通过wx.login获取到该用户UnionID，无须用户再次授权。</strong></p>
-<p>这里分为两种情况，</p>
-<p>(1)用code换取的时候，返回了unionid，这样就皆大欢喜了，你可以根据unionid以及openid去判断该用户有没有用户信息，从而获取userid或者生产userid返回给前端</p>
-<p>(2)悲剧的情况，unionid返回为null，这时候你没法儿关联出用户的userid。后来再去看官方文档的时候，发现有针对这种情况的方法。就是需要前端再去调wx.getUserInfo()这个接口。这时候微信会返回很多数据<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/open.html" target="_blank" rel="noopener">详情见微信官方文档:</a>,这些数据里面有一个encryptedData,这个数据中就包含你需要的unionid以及其他的很多用户信息啦。获取到以后将encryptedData、加密算法的初始向量iv返回给后端，后端根据这两个数据以及之前的session_key就可以解密出你需要的数据了。</p>
-<p>encryptedData 解密后为以下 json 结构，</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"openId"</span>: <span class="string">"OPENID"</span>,</span><br><span class="line">    <span class="attr">"nickName"</span>: <span class="string">"NICKNAME"</span>,</span><br><span class="line">    <span class="attr">"gender"</span>: GENDER,</span><br><span class="line">    <span class="attr">"city"</span>: <span class="string">"CITY"</span>,</span><br><span class="line">    <span class="attr">"province"</span>: <span class="string">"PROVINCE"</span>,</span><br><span class="line">    <span class="attr">"country"</span>: <span class="string">"COUNTRY"</span>,</span><br><span class="line">    <span class="attr">"avatarUrl"</span>: <span class="string">"AVATARURL"</span>,</span><br><span class="line">    <span class="attr">"unionId"</span>: <span class="string">"UNIONID"</span>,</span><br><span class="line">    <span class="attr">"watermark"</span>:</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="attr">"appid"</span>:<span class="string">"APPID"</span>,</span><br><span class="line">	<span class="attr">"timestamp"</span>:TIMESTAMP</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="2-获取用户信息"><a href="#2-获取用户信息" class="headerlink" title="2.获取用户信息"></a>2.获取用户信息</h2><p>在此之前，小程序获取微信的头像，昵称之类的用户信息，我用的都是wx.getUserInfo，例如</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">onLoad: <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="comment">//获取用户信息</span></span><br><span class="line">    wx.getUserInfo(&#123;</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(res);</span><br><span class="line">            that.data.userInfo = res.userInfo;</span><br><span class="line">            that.setData(&#123;</span><br><span class="line">                userInfo: that.data.userInfo</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>wx.getUserInfo需要用户授权 scope.userInfo，也就是那个授权弹窗。</p>
-<p><img src="/images/小程序授权.png" alt="授权"></p>
-<p><strong>但自从微信接口有了新的调整之后 这个wx.getUserInfo（）便不再出现授权弹窗了，需要使用button做引导~</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 需要使用 button 来授权登录 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;canIUse&#125;&#125;"</span> <span class="attr">open-type</span>=<span class="string">"getUserInfo"</span> <span class="attr">bindgetuserinfo</span>=<span class="string">"bindGetUserInfo"</span>&gt;</span>授权登录<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:else</span>&gt;</span>请升级微信版本<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//js</span></span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    canIUse: wx.canIUse(<span class="string">'button.open-type.getUserInfo'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 查看是否授权</span></span><br><span class="line">    wx.getSetting(&#123;</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (res.authSetting[<span class="string">'scope.userInfo'</span>]) &#123;</span><br><span class="line">          <span class="comment">// 已经授权，可以直接调用 getUserInfo 获取头像昵称</span></span><br><span class="line">          wx.getUserInfo(&#123;</span><br><span class="line">            success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(res.userInfo)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  bindGetUserInfo: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.detail.userInfo)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这就是等于一步变两步了~现在用button的话 可以在产品上多加引导，不会显得那么突兀的出来一个弹窗了</p>
-<p>然鹅，如果你仅仅只是想展示用户信息的话，那便使用open-data 吧，这样的话，js也就获取不到open-data的值，如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 如果只是展示用户头像昵称，可以使用 &lt;open-data /&gt; 组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">open-data</span> <span class="attr">type</span>=<span class="string">"userAvatarUrl"</span>&gt;</span><span class="tag">&lt;/<span class="name">open-data</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">open-data</span> <span class="attr">type</span>=<span class="string">"userNickName"</span>&gt;</span><span class="tag">&lt;/<span class="name">open-data</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<hr>
-<p>后记补充：</p>
-<p>参考：</p>
-<ol>
-<li><a href="https://blog.csdn.net/qq_38125123/article/details/71196853" target="_blank" rel="noopener">https://blog.csdn.net/qq_38125123/article/details/71196853</a></li>
-<li><a href="https://developers.weixin.qq.com/miniprogram/dev/api/open.html#wxgetuserinfoobject" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/open.html#wxgetuserinfoobject</a></li>
-<li><a href="http://www.jianshu.com/p/c5f6c98b2685" target="_blank" rel="noopener">http://www.jianshu.com/p/c5f6c98b2685</a></li>
-</ol>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/images/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/images/wechatpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">获取用户信息</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">移动端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">cordova</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      <span id="busuanzi_container_page_pv">
-        |阅读量(<span id="busuanzi_value_page_pv"></span>)
-      </span>
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:/2018/09/12/小程序/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<!-- 目录内容 -->
-
-<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-  <span class="btn-bg"></span>
-  <span class="btn-text">文章导航</span>
-</p>
-<div id="toc-article" class="toc-article">
-  <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-  <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-小程序登录"><span class="toc-number">1.</span> <span class="toc-text">1.小程序登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-获取用户信息"><span class="toc-number">2.</span> <span class="toc-text">2.获取用户信息</span></a></li></ol>
-</div>
-<script type="text/javascript">
-  function showToc(){
-    var toc_article = document.getElementById("toc-article");
-    var show_toc_btn = document.getElementById("show-toc-btn");
-    toc_article.setAttribute("style","display:block");
-    show_toc_btn.setAttribute("style","display:none");
-  };
-  function showBtn(){
-    var toc_article = document.getElementById("toc-article");
-    var show_toc_btn = document.getElementById("show-toc-btn");
-    toc_article.setAttribute("style","display:none");
-    show_toc_btn.setAttribute("style","display:block");
-  };
-</script>
-
-<!-- 目录内容结束 -->
-
-
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/09/13/Angular重点笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Angular重点笔记
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/09/10/前端模块化总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">前端模块化总结</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-小程序登录"><span class="toc-number">1.</span> <span class="toc-text">1.小程序登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-获取用户信息"><span class="toc-number">2.</span> <span class="toc-text">2.获取用户信息</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
+    </div></section>
   
 
-  
-
-  
-  <div id="SOHUCS" sid="小程序" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "cytp76zpY",
-        conf: "88b2e7c64054efc94c0e2ade8d2d6e7b"
-    });
-</script>
-</script>
-  
-
-  
-
-  
-
-
-
+    
 
 
           </div>
@@ -480,9 +251,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
