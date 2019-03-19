@@ -410,22 +410,41 @@
   
 
   
-  <div id="SOHUCS" sid="Angular重点笔记" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "cytp76zpY",
-        conf: "88b2e7c64054efc94c0e2ade8d2d6e7b"
+
+  
+
+  
+
+
+
+<section id="comments" class="comments">
+  <style>
+    .comments{margin:30px;padding:10px;background:#fff}
+    @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+  </style>
+  <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--该版本显示突出评论头像，需要去掉头像链接后 v1.34-->
+<!--<script src="//unpkg.com/valine/dist/Valine.min.js"></script>-->
+<!--使用网友更改后的-->
+<script src="https://cdn.fayne.cn/js/Valine.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  window.onload = function() {
+    new Valine({
+      el: '.comment',
+      notify: notify,
+      verify: verify,
+      app_id: "dKi2Ew50wY16TNA5aVPniGVm-gzGzoHsz",
+      app_key: "6F78vfJVBctk5R356YvHzl0M",
+      placeholder: "Just go go",
+      avatar:"mm"
     });
+  }
 </script>
-</script>
-  
 
-  
-
-  
-
-
+</section>
 
 
 
@@ -437,7 +456,7 @@
     <div id="footer-info">
     	<div class="footer-left">
         &copy; 2019 欧先森
-        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
         <span class="post-meta-divider">|</span>
         <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
@@ -528,10 +547,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
@@ -548,6 +563,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">下载</a>
               </li>
              
@@ -560,14 +579,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">获取用户信息</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">路由</a>
               </li>
              
@@ -577,6 +588,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">获取用户信息</a>
               </li>
             
             <div class="clearfix"></div>
@@ -639,7 +658,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于HNUC&lt;br/&gt;目前就职于远光研究院&lt;br/&gt;研究移动端开发与前端性能&lt;br/&gt;热爱自由</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">毕业于HNUC&lt;br/&gt;目前就职于远光软件&lt;br/&gt;研究跨平台前端开发&lt;br/&gt;热爱自由</div>
   	  	
     	</section>
     
