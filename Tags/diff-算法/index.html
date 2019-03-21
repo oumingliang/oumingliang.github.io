@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="">
-  <title>Angular重点笔记 | 欧先森</title>
+  <title>Tag: diff 算法 | 欧先森</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 模块按需加载 使用require.js 使用oclazyload.js   由于采用angular做了网页的单页面应用,需要一次性在主布局中将所有模块需要引用到的js都引入.对于比较小的项目,这是可行的,但是对于大的项目,一旦js文件较多,在页面首次加载时就引入所有js文件,无疑会延缓页面加载的速度,造成不良额用户体验.那么分布加载(按需加载)就显得很有必要了.  1.1 使用require">
-<meta name="keywords" content="Angular">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Angular重点笔记">
-<meta property="og:url" content="/2018/09/13/Angular重点笔记/index.html">
+  <meta name="description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
+<meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="og:type" content="website">
+<meta property="og:title" content="欧先森">
+<meta property="og:url" content="/tags/diff-算法/index.html">
 <meta property="og:site_name" content="欧先森">
-<meta property="og:description" content="1. 模块按需加载 使用require.js 使用oclazyload.js   由于采用angular做了网页的单页面应用,需要一次性在主布局中将所有模块需要引用到的js都引入.对于比较小的项目,这是可行的,但是对于大的项目,一旦js文件较多,在页面首次加载时就引入所有js文件,无疑会延缓页面加载的速度,造成不良额用户体验.那么分布加载(按需加载)就显得很有必要了.  1.1 使用require">
+<meta property="og:description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-18T14:25:57.770Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular重点笔记">
-<meta name="twitter:description" content="1. 模块按需加载 使用require.js 使用oclazyload.js   由于采用angular做了网页的单页面应用,需要一次性在主布局中将所有模块需要引用到的js都引入.对于比较小的项目,这是可行的,但是对于大的项目,一旦js文件较多,在页面首次加载时就引入所有js文件,无疑会延缓页面加载的速度,造成不良额用户体验.那么分布加载(按需加载)就显得很有必要了.  1.1 使用require">
+<meta name="twitter:title" content="欧先森">
+<meta name="twitter:description" content="毕业于HNUC，就职于远光研究院。研究移动端开发与前端性能。">
   
     <link rel="alternative" href="/atom.xml" title="欧先森" type="application/atom+xml">
   
@@ -159,293 +158,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Angular重点笔记" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Angular重点笔记
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/03/21/diff算法分析/" class="archive-article-date">
+  	<time datetime="2019-03-21T14:54:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-21</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/03/21/diff算法分析/">diff算法分析</a>
     </h1>
   
 
-        
-        <a href="/2018/09/13/Angular重点笔记/" class="archive-article-date">
-  	<time datetime="2018-09-13T13:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-模块按需加载"><a href="#1-模块按需加载" class="headerlink" title="1. 模块按需加载"></a>1. 模块按需加载</h2><ol>
-<li>使用require.js</li>
-<li>使用oclazyload.js</li>
-</ol>
-<blockquote>
-<pre><code>由于采用angular做了网页的单页面应用,需要一次性在主布局中将所有模块需要引用到的js都引入.对于比较小的项目,这是可行的,但是对于大的项目,一旦js文件较多,在页面首次加载时就引入所有js文件,无疑会延缓页面加载的速度,造成不良额用户体验.那么分布加载(按需加载)就显得很有必要了.
-</code></pre></blockquote>
-<h3 id="1-1-使用require-js"><a href="#1-1-使用require-js" class="headerlink" title="1.1 使用require.js"></a>1.1 使用require.js</h3><p><strong>main.js配置所需js路径，启动app.js,         app.js加载路由js，配置全局变量及相关全局设置</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">main.js</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>([<span class="string">"app"</span>], <span class="function"><span class="keyword">function</span> (<span class="params">app</span>) </span>&#123;</span><br><span class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		angular.bootstrap(<span class="built_in">document</span>, [app.name]);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">route.config.js :</span><br><span class="line"></span><br><span class="line">states: &#123;</span><br><span class="line">            <span class="comment">// 登录页</span></span><br><span class="line">            <span class="string">"login"</span>: &#123;</span><br><span class="line">                url: <span class="string">"/login"</span>,</span><br><span class="line">                templateUrl: <span class="string">"views/login.html"</span>,</span><br><span class="line">                controller: <span class="string">"LoginController"</span>,</span><br><span class="line">                dependencies: [<span class="string">"controllers/LoginController"</span>]</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">app.js  </span><br><span class="line"> </span><br><span class="line"><span class="comment">//注册机制，按需加载用</span></span><br><span class="line"></span><br><span class="line">app.lazy = &#123;</span><br><span class="line">            controller : $controllerProvider.register,</span><br><span class="line">            directive : $compileProvider.directive,</span><br><span class="line">            filter : $filterProvider.register,</span><br><span class="line">            factory : $provide.factory,</span><br><span class="line">            service : $provide.service</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (routeConfig.states !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">            angular.forEach(routeConfig.states, <span class="function"><span class="keyword">function</span>(<span class="params">route, state</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (route.dependencies !== <span class="literal">undefined</span> &amp;&amp; route.dependencies.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    route.resolve = resolve(route.dependencies);</span><br><span class="line">                &#125;</span><br><span class="line">                $stateProvider.state(state, route);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (routeConfig.defaultUrl !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">            $urlRouterProvider.otherwise(routeConfig.defaultUrl);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">dependencies</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            deps : [ <span class="string">"$q"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$q</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line"></span><br><span class="line">                <span class="built_in">require</span>(dependencies, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                    deferred.resolve();</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> deferred.promise;</span><br><span class="line">            &#125; ]</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>app.js在遍历加载路由时，给route加个了resolve属性，resolve（）为值，所以最后路由变成了</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">           .state(<span class="string">"login"</span>, &#123;</span><br><span class="line">               url: <span class="string">"/login"</span>,</span><br><span class="line">               templateUrl: <span class="string">"views/login.html"</span>,</span><br><span class="line">               controller: <span class="string">"LoginController"</span>,</span><br><span class="line">               dependencies: [<span class="string">"controllers/LoginController"</span>]</span><br><span class="line">               resolve: &#123;</span><br><span class="line">                   deps: [<span class="string">"$q"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$q</span>) </span>&#123;</span><br><span class="line">                        <span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line">                       <span class="comment">//异步加载controllers/LoginController</span></span><br><span class="line">                       <span class="built_in">require</span>([<span class="string">"controllers/LoginController"</span>],<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">                         deferred.resolve(); </span><br><span class="line">                 &#125;);</span><br><span class="line">                       <span class="keyword">return</span> deferred.promise;</span><br><span class="line">                   &#125;]</span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure>
-<p>前文说了lazy()按需加载，那么之后创建的js文件，即可使用lazy()来注册</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> app.lazy.controller(<span class="string">"competitionStatisticsController"</span>, controller);</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="1-2-使用oclazyload-js"><a href="#1-2-使用oclazyload-js" class="headerlink" title="1.2 使用oclazyload.js"></a>1.2 使用oclazyload.js</h3><p><strong>index.html需引入app.js,主要内容为定义的angular.module,以及路由配置：</strong></p>
-<p><strong>注意：oclazyload.js在angularjs后引入</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">app.js</span><br><span class="line"></span><br><span class="line"><span class="comment">//数组添加方法，判断是否包含指定参数，有则返回true</span></span><br><span class="line">    <span class="built_in">Array</span>.prototype.contains = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> i = <span class="keyword">this</span>.length;</span><br><span class="line">        <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>[i] === obj) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//封装函数，返回一个数组，指定要懒加载的文件</span></span><br><span class="line">    <span class="keyword">var</span> loadMyCtrl = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            deps : [<span class="string">'$ocLazyLoad'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$ocLazyLoad</span>)</span>&#123;</span><br><span class="line">           <span class="keyword">return</span> 				      		    $ocLazyLoad.load([<span class="string">'scripts/'</span>+obj+<span class="string">'.controller.js'</span>,<span class="string">'styles/'</span>+obj+<span class="string">'.css'</span>]);</span><br><span class="line">                &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
-<p>然后在配置路由的时候调用loadMyCtrl()方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route.resolve = loadMyCtrl(route.dependencies);</span><br></pre></td></tr></table></figure>
-<p><strong>那么问题来了!</strong></p>
-<p><strong>为什么需要使用resolve？</strong> </p>
-<p>当路由切换的时候，路由的页面中的元素（标签）就会立马显示出来，同时，数据会被准备好并呈现出来。但是注意，数据和元素并不是同步的，在没有任何设置的情况下，AngularJS默认先呈现出元素，而后再呈现出数据。这样就会导致页面会被渲染两遍，导致“页面UI抖动”的问题，对用户不太友好。resolve的出现解决了这个问题。 </p>
-<p><strong>resolve是干嘛用的 ?</strong></p>
-<p>resolve属性里的值会在路由成功前被<strong>预先设定好</strong>，然后<strong>注入到控制器</strong>中。通俗地将，就是等数据都“就位”后，才进行路由（其实我觉得也不能叫路由，因为路由是一些列的操作，其中就包括了设置resolve属性等等）。这样的好处就是页面仅会被渲染一遍。</p>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/sinat_40914914/article/details/79109170" target="_blank" rel="noopener">关于angular项目按需加载文件的两种方法（oclazyload&amp;require)</a></p>
-<p><a href="https://www.cnblogs.com/Ricky-Huang/p/5675409.html" target="_blank" rel="noopener">angularjs ocLazyLoad按需加载js</a></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/images/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/images/wechatpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">diff 算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      <span id="busuanzi_container_page_pv">
-        |阅读量(<span id="busuanzi_value_page_pv"></span>)
-      </span>
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:/2018/09/13/Angular重点笔记/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<!-- 目录内容 -->
-
-<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-  <span class="btn-bg"></span>
-  <span class="btn-text">文章导航</span>
-</p>
-<div id="toc-article" class="toc-article">
-  <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-  <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-模块按需加载"><span class="toc-number">1.</span> <span class="toc-text">1. 模块按需加载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-使用require-js"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 使用require.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-使用oclazyload-js"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 使用oclazyload.js</span></a></li></ol></li></ol>
-</div>
-<script type="text/javascript">
-  function showToc(){
-    var toc_article = document.getElementById("toc-article");
-    var show_toc_btn = document.getElementById("show-toc-btn");
-    toc_article.setAttribute("style","display:block");
-    show_toc_btn.setAttribute("style","display:none");
-  };
-  function showBtn(){
-    var toc_article = document.getElementById("toc-article");
-    var show_toc_btn = document.getElementById("show-toc-btn");
-    toc_article.setAttribute("style","display:none");
-    show_toc_btn.setAttribute("style","display:block");
-  };
-</script>
-
-<!-- 目录内容结束 -->
-
-
-
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/09/18/后端路由与前端路由/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          浅谈前后端路由与前后端渲染
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/09/12/小程序/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">小程序开发重点解析</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-模块按需加载"><span class="toc-number">1.</span> <span class="toc-text">1. 模块按需加载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-使用require-js"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 使用require.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-使用oclazyload-js"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 使用oclazyload.js</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
+    </div></section>
   
 
-  
-
-  
-
-  
-
-  
-
-
-
-<section id="comments" class="comments">
-  <style>
-    .comments{margin:30px;padding:10px;background:#fff}
-    @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
-  </style>
-  <div id="vcomment" class="comment"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<!--该版本显示突出评论头像，需要去掉头像链接后 v1.34-->
-<!--<script src="//unpkg.com/valine/dist/Valine.min.js"></script>-->
-<!--使用网友更改后的-->
-<script src="https://cdn.fayne.cn/js/Valine.min.js"></script>
-<script>
-  var notify = 'false' == true ? true : false;
-  var verify = 'false' == true ? true : false;
-  window.onload = function() {
-    new Valine({
-      el: '.comment',
-      notify: notify,
-      verify: verify,
-      app_id: "dKi2Ew50wY16TNA5aVPniGVm-gzGzoHsz",
-      app_key: "6F78vfJVBctk5R356YvHzl0M",
-      placeholder: "Just go go",
-      avatar:"mm"
-    });
-  }
-</script>
-
-</section>
-
+    
 
 
           </div>
@@ -477,9 +243,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
