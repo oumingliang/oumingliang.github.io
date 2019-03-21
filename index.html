@@ -160,6 +160,393 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-圣杯布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/21/圣杯布局/">圣杯布局&amp;双飞翼布局&amp;BFC</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/21/圣杯布局/" class="archive-article-date">
+  	<time datetime="2019-03-21T13:07:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h1><p>上周电话面试某游戏公司，开局第一个问题就是 圣杯布局与双飞翼，我以前看过，不过没放在心上，当面试官问我的时候，我只能想起 是左右定宽，中间自适应， 我知道有5种实现该布局的方式，但是不知道圣杯与双飞翼是哪一种，哎，回去看了这两个布局的资料，诶，发现，圣杯与双飞翼 是另外两种。</p>
+<h1 id="2-圣杯布局"><a href="#2-圣杯布局" class="headerlink" title="2. 圣杯布局"></a>2. 圣杯布局</h1><p><img src="https://i.loli.net/2019/03/21/5c93902074e2b.png" alt=""></p>
+<p>反正不管是圣杯还是双飞翼，最后结果都是如上图所示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"middle"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h4</span>&gt;</span>middle<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>HHHHHHHHHHHHHHHHHHHHHH</span><br><span class="line">        hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span><br><span class="line">        HHHHHHHHHHHHHHHHHHHHHH</span><br><span class="line">        hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>left<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>oooooooooooooo</span><br><span class="line">        00000000000000000</span><br><span class="line">        ooooooooooooooo</span><br><span class="line">        ooooooooooooooo</span><br><span class="line">        000000000000000<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>right<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>BBBBBBBBBBBBBB</span><br><span class="line">        BBBBBBBBBBBBBBBBBB</span><br><span class="line">        88888888888888888888<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>DOM上， 中间的放首位，然后是左边，右边。</p>
+<p><strong>操作步奏：</strong></p>
+<p><strong>1.将三者都 float:left , 再加上一个position:relative (因为相对定位后面会用到）</strong></p>
+<p><strong>2.middle部分 width:100%占满</strong></p>
+<p><strong>3.此时middle占满了，所以要把left拉到最左边，使用margin-left:-100%</strong></p>
+<p><strong>4.这时left拉回来了，但会覆盖middle内容的左端，要把middle内容拉出来，所以在外围container加上 padding:0 220px 0 200px</strong></p>
+<p><strong>5.middle内容拉回来了，但left也跟着过来了，所以要还原，就对left使用相对定位 left:-200px  同理，right也要相对定位还原 right:-220px</strong></p>
+<p><strong>6.到这里大概就自适应好了。如果想container高度保持一致可以给left middle right都加上min-height:130px</strong></p>
+<p><strong>由于middle 宽度100%</strong></p>
+<p>CSS 代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span>,</span><br><span class="line">  <span class="selector-class">.middle</span>,</span><br><span class="line">  <span class="selector-class">.right</span>&#123; </span><br><span class="line">      <span class="attribute">position</span>: relative;</span><br><span class="line">      <span class="attribute">float</span>: left;</span><br><span class="line">      <span class="attribute">min-height</span>: <span class="number">130px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.container</span>&#123;</span><br><span class="line">      <span class="attribute">padding</span>:<span class="number">0</span> <span class="number">220px</span> <span class="number">0</span> <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.left</span>&#123;</span><br><span class="line">      <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">left</span>: -<span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">background</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.right</span>&#123;</span><br><span class="line">      <span class="attribute">margin-left</span>: -<span class="number">220px</span>;</span><br><span class="line">      <span class="attribute">right</span>: -<span class="number">220px</span>;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">220px</span>;</span><br><span class="line">      <span class="attribute">background</span>: green;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.middle</span>&#123; </span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">background</span>: blue;</span><br><span class="line">      <span class="attribute">word-break</span>: break-all;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="操作关键要点："><a href="#操作关键要点：" class="headerlink" title="操作关键要点："></a>操作关键要点：</h3><p> <strong>在父元素container 中通过设置 padding 值来显示left 与right。</strong></p>
+<p><strong>父元素设置overflow:hidden，这个可是有讲究的，这是为了将整个块设置为BFC ，在计算BFC高度时，浮动元素也参与运算。</strong></p>
+<ul>
+<li>这是没开启 overflow:hidden时，可见 高度为0</li>
+</ul>
+<p><img src="https://i.loli.net/2019/03/21/5c939573ec99e.png" alt=""></p>
+<ul>
+<li>在开启后，高度被子元素撑开。</li>
+</ul>
+<p><img src="https://i.loli.net/2019/03/21/5c9395cd311b0.png" alt=""></p>
+<h1 id="3-双飞翼布局"><a href="#3-双飞翼布局" class="headerlink" title="3. 双飞翼布局"></a>3. 双飞翼布局</h1><p>双飞翼布局是阿里提出来的，与 圣杯有以下三点区别</p>
+<ol>
+<li><strong>圣杯布局 需要 浮动与相对定位， 而 双飞翼 只需要浮动</strong></li>
+<li><strong>圣杯布局 是通过父元素的 pddding 来为 left，right 预留空间， 而双飞翼 是通过 margin 来显示完整middle 的内容。</strong></li>
+<li><strong>双飞翼 在middle中 加了一层 容器，所以Dom结构就不一样。</strong></li>
+</ol>
+        
+          <a class="article-more-a" href="/2019/03/21/圣杯布局/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">圣杯</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">双飞翼 BFC</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <span id="busuanzi_container_page_pv">
+        |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/21/圣杯布局/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+<section id="comments" class="comments">
+  <style>
+    .comments{margin:30px;padding:10px;background:#fff}
+    @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+  </style>
+  <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--该版本显示突出评论头像，需要去掉头像链接后 v1.34-->
+<!--<script src="//unpkg.com/valine/dist/Valine.min.js"></script>-->
+<!--使用网友更改后的-->
+<script src="https://cdn.fayne.cn/js/Valine.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  window.onload = function() {
+    new Valine({
+      el: '.comment',
+      notify: notify,
+      verify: verify,
+      app_id: "dKi2Ew50wY16TNA5aVPniGVm-gzGzoHsz",
+      app_key: "6F78vfJVBctk5R356YvHzl0M",
+      placeholder: "Just go go",
+      avatar:"mm"
+    });
+  }
+</script>
+
+</section>
+
+
+
+  
+    <article id="post-圣杯-双飞翼布局-BFC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/21/圣杯-双飞翼布局-BFC/">圣杯布局&amp;双飞翼布局&amp;BFC</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/21/圣杯-双飞翼布局-BFC/" class="archive-article-date">
+  	<time datetime="2019-03-21T13:07:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h1><p>上周电话面试某游戏公司，开局第一个问题就是 圣杯布局与双飞翼，我以前看过，不过没放在心上，当面试官问我的时候，我只能想起 是左右定宽，中间自适应， 我知道有5种实现该布局的方式，但是不知道圣杯与双飞翼是哪一种，哎，回去看了这两个布局的资料，诶，发现，圣杯与双飞翼 是另外两种。</p>
+<h1 id="2-圣杯布局"><a href="#2-圣杯布局" class="headerlink" title="2. 圣杯布局"></a>2. 圣杯布局</h1><p><img src="https://i.loli.net/2019/03/21/5c93902074e2b.png" alt=""></p>
+<p>反正不管是圣杯还是双飞翼，最后结果都是如上图所示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"middle"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h4</span>&gt;</span>middle<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>HHHHHHHHHHHHHHHHHHHHHH</span><br><span class="line">        hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span><br><span class="line">        HHHHHHHHHHHHHHHHHHHHHH</span><br><span class="line">        hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>left<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>oooooooooooooo</span><br><span class="line">        00000000000000000</span><br><span class="line">        ooooooooooooooo</span><br><span class="line">        ooooooooooooooo</span><br><span class="line">        000000000000000<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>right<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>BBBBBBBBBBBBBB</span><br><span class="line">        BBBBBBBBBBBBBBBBBB</span><br><span class="line">        88888888888888888888<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>DOM上， 中间的放首位，然后是左边，右边。</p>
+<p><strong>操作步奏：</strong></p>
+<p><strong>1.将三者都 float:left , 再加上一个position:relative (因为相对定位后面会用到）</strong></p>
+<p><strong>2.middle部分 width:100%占满</strong></p>
+<p><strong>3.此时middle占满了，所以要把left拉到最左边，使用margin-left:-100%</strong></p>
+<p><strong>4.这时left拉回来了，但会覆盖middle内容的左端，要把middle内容拉出来，所以在外围container加上 padding:0 220px 0 200px</strong></p>
+<p><strong>5.middle内容拉回来了，但left也跟着过来了，所以要还原，就对left使用相对定位 left:-200px  同理，right也要相对定位还原 right:-220px</strong></p>
+<p><strong>6.到这里大概就自适应好了。如果想container高度保持一致可以给left middle right都加上min-height:130px</strong></p>
+<p><strong>由于middle 宽度100%</strong></p>
+<p>CSS 代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span>,</span><br><span class="line">  <span class="selector-class">.middle</span>,</span><br><span class="line">  <span class="selector-class">.right</span>&#123; </span><br><span class="line">      <span class="attribute">position</span>: relative;</span><br><span class="line">      <span class="attribute">float</span>: left;</span><br><span class="line">      <span class="attribute">min-height</span>: <span class="number">130px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.container</span>&#123;</span><br><span class="line">      <span class="attribute">padding</span>:<span class="number">0</span> <span class="number">220px</span> <span class="number">0</span> <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.left</span>&#123;</span><br><span class="line">      <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">left</span>: -<span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">background</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.right</span>&#123;</span><br><span class="line">      <span class="attribute">margin-left</span>: -<span class="number">220px</span>;</span><br><span class="line">      <span class="attribute">right</span>: -<span class="number">220px</span>;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">220px</span>;</span><br><span class="line">      <span class="attribute">background</span>: green;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.middle</span>&#123; </span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">background</span>: blue;</span><br><span class="line">      <span class="attribute">word-break</span>: break-all;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="操作关键要点："><a href="#操作关键要点：" class="headerlink" title="操作关键要点："></a>操作关键要点：</h3><p> <strong>在父元素container 中通过设置 padding 值来显示left 与right。</strong></p>
+<p><strong>父元素设置overflow:hidden，这个可是有讲究的，这是为了将整个块设置为BFC ，在计算BFC高度时，浮动元素也参与运算。</strong></p>
+<ul>
+<li>这是没开启 overflow:hidden时，可见 高度为0</li>
+</ul>
+<p><img src="https://i.loli.net/2019/03/21/5c939573ec99e.png" alt=""></p>
+<ul>
+<li>在开启后，高度被子元素撑开。</li>
+</ul>
+<p><img src="https://i.loli.net/2019/03/21/5c9395cd311b0.png" alt=""></p>
+<h1 id="3-双飞翼布局"><a href="#3-双飞翼布局" class="headerlink" title="3. 双飞翼布局"></a>3. 双飞翼布局</h1><p>双飞翼布局是阿里提出来的，与 圣杯有以下三点区别</p>
+<ol>
+<li><strong>圣杯布局 需要 浮动与相对定位， 而 双飞翼 只需要浮动</strong></li>
+<li><strong>圣杯布局 是通过父元素的 pddding 来为 left，right 预留空间， 而双飞翼 是通过 margin 来显示完整middle 的内容。</strong></li>
+<li><strong>双飞翼 在middle中 加了一层 容器，所以Dom结构就不一样。</strong></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"middle"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main-inner"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">h4</span>&gt;</span>main<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">p</span>&gt;</span>HHHHHHHHHHHHHHHHHHHHHH</span><br><span class="line">     hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span><br><span class="line">     HHHHHHHHHHHHHHHHHHHHHH</span><br><span class="line">     hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span><br><span class="line">     <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sub"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">h4</span>&gt;</span>sub<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">p</span>&gt;</span>oooooooooooooo</span><br><span class="line">     00000000000000000</span><br><span class="line">     ooooooooooooooo</span><br><span class="line">     ooooooooooooooo</span><br><span class="line">     000000000000000<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"extra"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">h4</span>&gt;</span>extra<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">p</span>&gt;</span>BBBBBBBBBBBBBB</span><br><span class="line">     BBBBBBBBBBBBBBBBBB</span><br><span class="line">     88888888888888888888<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>操作步奏</strong>：</p>
+<p><strong>1.html代码中，middle要放最前边，sub  extra</strong></p>
+<p><strong>2.将middle，sub  extra 都float:left</strong></p>
+<p><strong>3.将middle占满 width:100%</strong></p>
+<p><strong>4.此时middle占满了，所以要把sub拉到最左边，使用margin-left:-100%  同理 extra使用margin-left:-220px</strong></p>
+<p><strong>（这时可以直接继续上边圣杯布局的步骤，也可以有所改动）</strong></p>
+<p><strong>5.middle内容被覆盖了吧，除了使用外围的padding，还可以考虑使用margin，给main增加一个内层div– main-inner, 然后margin:0 220px 0 200px</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sub</span>,</span><br><span class="line"> <span class="selector-class">.middle</span>,</span><br><span class="line"> <span class="selector-class">.extra</span>&#123; </span><br><span class="line">     <span class="attribute">float</span>: left;</span><br><span class="line">     <span class="attribute">min-height</span>: <span class="number">130px</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="selector-class">.sub</span>&#123;</span><br><span class="line">     <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">     <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">     <span class="attribute">background</span>: red;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="selector-class">.extra</span>&#123;</span><br><span class="line">     <span class="attribute">margin-left</span>: -<span class="number">220px</span>;</span><br><span class="line">     <span class="attribute">width</span>: <span class="number">220px</span>;</span><br><span class="line">     <span class="attribute">background</span>: blue;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="selector-class">.middle</span>&#123; </span><br><span class="line">     <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="selector-class">.main-inner</span>&#123; </span><br><span class="line">     <span class="attribute">margin-left</span>: <span class="number">200px</span>;</span><br><span class="line">     <span class="attribute">margin-right</span>: <span class="number">220px</span>;</span><br><span class="line">     <span class="attribute">min-height</span>: <span class="number">130px</span>;</span><br><span class="line">     <span class="attribute">background</span>: green;</span><br><span class="line">     <span class="attribute">word-break</span>: break-all;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-BFC-块级格式化上下文"><a href="#3-BFC-块级格式化上下文" class="headerlink" title="3. BFC 块级格式化上下文"></a>3. BFC 块级格式化上下文</h1><p>在一个Web页面的CSS渲染中，<a href="http://www.w3.org/TR/CSS21/visuren.html#block-formatting" target="_blank" rel="noopener">块级格式化上下文</a> (Block Fromatting Context)是按照块级盒子布局的。W3C对BFC的定义如下：</p>
+<p>浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。</p>
+<p>为了便于理解，我们换一种方式来重新定义BFC。一个HTML元素要创建BFC，则满足下列的任意一个或多个条件即可：</p>
+<h3 id="设置条件"><a href="#设置条件" class="headerlink" title="设置条件"></a>设置条件</h3><p><strong>1、float的值不是none。</strong></p>
+<p><strong>2、position的值不是static或者relative。</strong></p>
+<p><strong>3、display的值是inline-block、table-cell、flex、table-caption或者inline-flex</strong></p>
+<p><strong>4、overflow的值不是visible</strong></p>
+<p>BFC是一个独立的布局环境，其中的元素布局是不受外界的影响，并且在一个BFC中，块盒与行盒（行盒由一行中所有的内联元素所组成）都会垂直的沿着其父元素的边框排列。</p>
+<p>怎么创建BFC</p>
+<p>要显示的创建一个BFC是非常简单的，只要满足上述4个CSS条件之一就行。例如：</p>
+<p>&lt;divclass=”container”&gt;  你的内容div&gt;</p>
+<p>在类container中添加类似 overflow: scroll，overflow: hidden，display: flex，float: left，或 display: table 的规则来显示创建BFC。虽然添加上述的任意一条都能创建BFC，但会有一些副作用：</p>
+<p><strong>1、display: table 可能引发响应性问题</strong></p>
+<p><strong>2、overflow: scroll 可能产生多余的滚动条</strong></p>
+<p><strong>3、float: left 将把元素移至左侧，并被其他元素环绕</strong></p>
+<p><strong>4、overflow: hidden 将裁切溢出元素</strong></p>
+<p>因而无论什么时候需要创建BFC，都要基于自身的需要来考虑。对于本文，将采用 overflow: hidden 方式：</p>
+<p>.container {    overflow: hidden;}</p>
+<p>再说两点</p>
+<p>BFC中盒子怎么对齐</p>
+<p>如前文所说，在一个BFC中，块盒与行盒（行盒由一行中所有的内联元素所组成）都会垂直的沿着其父元素的边框排列。W3C给出得规范是：</p>
+<p>在BFC中，每一个盒子的左外边缘（margin-left）会触碰到容器的左边缘(border-left)（对于从右到左的格式来说，则触碰到右边缘）。浮动也是如此（尽管盒子里的行盒子 Line Box 可能由于浮动而变窄），除非盒子创建了一个新的BFC（在这种情况下盒子本身可能由于浮动而变窄）。</p>
+<p><img src="https://i.loli.net/2019/03/21/5c93a09fb2f6d.jpeg" alt=""></p>
+<p>外边距折叠</p>
+<p>常规流布局时，盒子都是垂直排列，两者之间的间距由各自的外边距所决定，但不是二者外边距之和。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Sibling 1 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Sibling 2 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">div&gt;</span><br></pre></td></tr></table></figure>
+<p>对应的CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123; </span><br><span class="line">	<span class="attribute">background-color</span>: red;  </span><br><span class="line">	<span class="attribute">overflow</span>: hidden; <span class="comment">/* creates a block formatting context */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span> &#123; </span><br><span class="line">	<span class="attribute">background-color</span>: lightgreen; </span><br><span class="line">	<span class="attribute">margin</span>: <span class="number">10px</span>0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>渲染结果如图：</p>
+<p><img src="https://i.loli.net/2019/03/21/5c93a0d57262d.jpeg" alt=""></p>
+<p>在上图中，一个红盒子（div）包含着两个兄弟元素（p），一个BFC已经创建了出来。</p>
+<p>理论上，两个p元素之间的外边距应当是二者外边距之和（20px）但实际上却是10px，这是外边距折叠(Collapsing Margins)的结果。</p>
+<p>在CSS当中，相邻的两个盒子（可能是兄弟关系也可能是祖先关系）的外边距可以结合成一个单独的外边距。这种合并外边距的方式被称为折叠，并且因而所结合成的外边距称为折叠外边距。折叠的结果按照如下规则计算：</p>
+<p><strong>1、两个相邻的外边距都是正数时，折叠结果是它们两者之间较大的值。</strong></p>
+<p><strong>2、两个相邻的外边距都是负数时，折叠结果是两者绝对值的较大值。</strong></p>
+<p><strong>3、两个外边距一正一负时，折叠结果是两者的相加的和。</strong></p>
+<p>产生折叠的必备条件：margin必须是邻接的! </p>
+<p>BFC可以做什么呢？</p>
+<h3 id="3-1-利用BFC避免外边距折叠"><a href="#3-1-利用BFC避免外边距折叠" class="headerlink" title="3.1 利用BFC避免外边距折叠"></a>3.1 利用BFC避免外边距折叠</h3><p>BFC可能造成外边距折叠，也可以利用它来避免这种情况。BFC产生外边距折叠要满足一个条件：两个相邻元素要处于同一个BFC中。所以，若两个相邻元素在不同的BFC中，就能避免外边距折叠。</p>
+<p>改进前面的例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Sibling 1 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Sibling 2 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Sibling 3 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对应的CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;  </span><br><span class="line">    <span class="attribute">background-color</span>: red;  </span><br><span class="line">    <span class="attribute">overflow</span>: hidden; <span class="comment">/* creates a block formatting context */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span> &#123; </span><br><span class="line">    <span class="attribute">background-color</span>: lightgreen; </span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果和上面一样，由于外边距折叠，三个相邻P元素之间的垂直距离是10px，这是因为三个 p 标签都从属于同一个BFC。</p>
+<p>修改第三个P元素，使之创建一个新的BFC：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Sibling 1 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>Sibling 2 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"newBFC"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Sibling 3  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对应的CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;   </span><br><span class="line">	<span class="attribute">background-color</span>: red;  </span><br><span class="line">	<span class="attribute">overflow</span>: hidden; <span class="comment">/* creates a block formatting context */</span>&#125;</span><br><span class="line"><span class="selector-tag">p</span> &#123;  </span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>  <span class="number">0</span>;   </span><br><span class="line">    <span class="attribute">background-color</span>: lightgreen;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.newBFC</span> &#123; </span><br><span class="line">	<span class="attribute">overflow</span>: hidden;  <span class="comment">/* creates new block formatting context */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在的结果如图：</p>
+<p><img src="https://i.loli.net/2019/03/21/5c93a0e66773e.png" alt=""></p>
+<p>因为第二个和第三个P元素现在分属于不同的BFC，它们之间就不会发生外边距折叠了。</p>
+<h3 id="3-2-BFC包含浮动"><a href="#3-2-BFC包含浮动" class="headerlink" title="3.2 BFC包含浮动"></a>3.2 BFC包含浮动</h3><p>浮动元素是会脱离文档流的(绝对定位元素会脱离文档流)。如果一个没有高度或者height是auto的容器的子元素是浮动元素，则该容器的高度是不会被撑开的。我们通常会利用伪元素(:after或者:before)来解决这个问题。BFC能包含浮动，也能解决容器高度不会被撑开的问题。</p>
+<p><img src="https://i.loli.net/2019/03/21/5c93a13d62159.jpeg" alt=""></p>
+<p>看个例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt; <span class="attr">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span>    </span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>Sibling<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123; </span><br><span class="line">    <span class="attribute">background-color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-tag">div</span> &#123; </span><br><span class="line">    <span class="attribute">float</span>: left;  </span><br><span class="line">    <span class="attribute">background-color</span>: lightgreen; </span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面这个例子中，容器没有任何高度，并且它包不住浮动子元素，容器的高度并不会被撑开。为解决这个问题，可以在容器中创建一个BFC：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;    <span class="attribute">overflow</span>: hidden; <span class="comment">/* creates block formatting context */</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>现在容器可以包住浮动子元素，并且其高度会扩展至包住其子元素，在这个新的BFC中浮动元素又回归到页面的常规流之中了。</p>
+<h3 id="3-3-使用BFC避免文字环绕"><a href="#3-3-使用BFC避免文字环绕" class="headerlink" title="3.3 使用BFC避免文字环绕"></a>3.3 使用BFC避免文字环绕</h3><p><img src="https://i.loli.net/2019/03/21/5c93a0f7847e1.jpeg" alt=""></p>
+<p>如上图所示，对于浮动元素，可能会造成文字环绕的情况(Figure1)，但这并不是我们想要的布局(Figure2才是想要的)。要解决这个问题，我们可以用外边距，但也可以用BFC。</p>
+<p>First let us understand why the text wraps. For this we have to understand how the box model works when an element is floated. This is the part I left earlier while discussing the alignment in a block formatting context. Let us understand what is happening in Figure 1 in the diagram below:</p>
+<p><img src="https://i.loli.net/2019/03/21/5c93a11bead9f.jpeg" alt=""></p>
+<p>假设HTML是：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"floated"</span>&gt;</span>    </span><br><span class="line">    	Floated div  </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>  Quae hic ut ab perferendis sit quod architecto,   dolor debitis quam rem provident aspernatur tempora  expedita.  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上图整个黑色区域表示 p 元素。p 元素没有移位但它叠在了浮动元素之下，而p元素的文本(行盒子)却移位了，行盒子水平变窄来给浮动元素腾出了空间。随着文本的增加，最后文本将环绕在浮动元素之下，因为那时候行盒子不再需要移位，也就成了图Figure1的样子。</p>
+<p>再回顾一下W3C的描述：</p>
+<p>在BFC上下文中，每个盒子的左外侧紧贴包含块的左侧（从右到左的格式里，则为盒子右外侧紧贴包含块右侧），甚至有浮动也是如此（尽管盒子里的行盒子 Line Box 可能由于浮动而变窄），除非盒子创建了一个新的BFC（在这种情况下盒子本身可能由于浮动而变窄）。</p>
+<p>因而，如果p元素创建一个新的BFC那它就不会再紧贴包含块的左侧了。</p>
+<h3 id="3-4-在多列布局中使用BFC"><a href="#3-4-在多列布局中使用BFC" class="headerlink" title="3.4 在多列布局中使用BFC"></a>3.4 在多列布局中使用BFC</h3><p>如果我们创建一个占满整个容器宽度的多列布局，在某些浏览器中最后一列有时候会掉到下一行。这可能是因为浏览器四舍五入了列宽从而所有列的总宽度会超出容器。但如果我们在多列布局中的最后一列里创建一个新的BFC，它将总是占据其他列先占位完毕后剩下的空间。</p>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">    	column 1</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">    	column 2</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span></span><br><span class="line">    	column 3</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对应的CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.column</span> &#123;  </span><br><span class="line">    <span class="attribute">width</span>: <span class="number">31.33%</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: green;   </span><br><span class="line">    <span class="attribute">float</span>: left; </span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">1%</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="selector-class">.column</span><span class="selector-pseudo">:last-child</span> &#123;   </span><br><span class="line">	<span class="attribute">float</span>: none;<span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在尽管盒子的宽度稍有改变，但布局不会打破。当然，对多列布局来说这不一定是个好办法，但能避免最后一列下掉。这个问题上弹性盒或许是个更好的解决方案，但这个办法可以用来说明元素在这些环境下的行为。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">圣杯</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">双飞翼 BFC</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <span id="busuanzi_container_page_pv">
+        |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/21/圣杯-双飞翼布局-BFC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+<section id="comments" class="comments">
+  <style>
+    .comments{margin:30px;padding:10px;background:#fff}
+    @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+  </style>
+  <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--该版本显示突出评论头像，需要去掉头像链接后 v1.34-->
+<!--<script src="//unpkg.com/valine/dist/Valine.min.js"></script>-->
+<!--使用网友更改后的-->
+<script src="https://cdn.fayne.cn/js/Valine.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  window.onload = function() {
+    new Valine({
+      el: '.comment',
+      notify: notify,
+      verify: verify,
+      app_id: "dKi2Ew50wY16TNA5aVPniGVm-gzGzoHsz",
+      app_key: "6F78vfJVBctk5R356YvHzl0M",
+      placeholder: "Just go go",
+      avatar:"mm"
+    });
+  }
+</script>
+
+</section>
+
+
+
+  
     <article id="post-vue-WebAPP-cordova" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1003,309 +1390,10 @@
 
 
   
-    <article id="post-小程序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/12/小程序/">小程序开发重点解析</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/12/小程序/" class="archive-article-date">
-  	<time datetime="2018-09-12T11:00:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-小程序登录"><a href="#1-小程序登录" class="headerlink" title="1.小程序登录"></a>1.小程序登录</h2><p>  <strong>数据流梗概：</strong></p>
-<p>  1.客户端登录（产生res.code）</p>
-<p>  2.APP服务端（持有appid\appsecret）</p>
-<p>  3.微信服务（appid+appsecret+res.code换取sessionKey、openid、unionid)</p>
-<p>  4.APP服务端（存储微信服务返回的openId、unionid等，产生自定义的sessionId）-&gt; </p>
-<p> 5.客户端登录完成（持有sessionId，每次请求发回服务端）</p>
-<p> <strong>小程序前端登陆：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> login = <span class="keyword">async</span>() =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="keyword">await</span> WXP.login()</span><br><span class="line">  <span class="keyword">let</span> token = <span class="keyword">await</span> http.request(&#123;</span><br><span class="line">    url: <span class="string">"/wx/onlogin"</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      code: res.code</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">    http.HEADERS.sessionCode = res.code</span><br><span class="line">  <span class="comment">// 将服务器返回的Set-Cookie命令内容保留起来，后续请求放到Cookie中带回，模拟浏览器Cookie的效果</span></span><br><span class="line">  <span class="keyword">let</span> cookies = token.header[<span class="string">"Set-Cookie"</span>]</span><br><span class="line">  <span class="keyword">if</span> (cookies) &#123;</span><br><span class="line">    http.setCookies(cookies)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 保存服务器返回的Session和关联用户状态信息</span></span><br><span class="line">  <span class="keyword">let</span> result = token.data.result</span><br><span class="line">  <span class="keyword">if</span> (result &amp;&amp; result.sessionId) &#123;</span><br><span class="line">    http.HEADERS.sessionId = result.sessionId</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`用户微信Session创建成功，code=<span class="subst">$&#123;res.code&#125;</span>，sessionId=<span class="subst">$&#123;http.HEADERS.sessionId&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">if</span> (result.bind) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`用户绑定成功：<span class="subst">$&#123;result.userVo.userName&#125;</span>`</span>);</span><br><span class="line">      session.realityUserInfo = result.userVo</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 即使用户没有关联，也应该产生sessionID，没有的话视同服务端异常</span></span><br><span class="line">    <span class="comment">// msgUtil.throwException("ERROR", "服务端登录验证异常，请重试", &#123;</span></span><br><span class="line">    <span class="comment">//   response: res,</span></span><br><span class="line">    <span class="comment">//   token</span></span><br><span class="line">    <span class="comment">// &#125;)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>后台代码:(注：非真实后端代码，但原理一样。)</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/wx/onlogin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> code = req.query.code</span><br><span class="line">  request.get(&#123;</span><br><span class="line">    uri: <span class="string">'https://api.weixin.qq.com/sns/jscode2session'</span>,</span><br><span class="line">    json: <span class="literal">true</span>,</span><br><span class="line">    qs: &#123;</span><br><span class="line">      grant_type: <span class="string">'authorization_code'</span>,</span><br><span class="line">      appid: <span class="string">'你小程序的APPID'</span>,</span><br><span class="line">      secret: <span class="string">'你小程序的SECRET'</span>,</span><br><span class="line">      js_code: code</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, (err, response, data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (response.statusCode === <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[openid]"</span>, data.openid)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[session_key]"</span>, data.session_key)</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//<span class="doctag">TODO:</span> 生成一个唯一字符串sessionid作为键，将openid和session_key作为值，存入redis，超时时间设置为2小时</span></span><br><span class="line">      <span class="comment">//伪代码: redisStore.set(sessionid, openid + session_key, 7200)</span></span><br><span class="line"> </span><br><span class="line">      res.json(&#123; <span class="attr">sessionid</span>: sessionid &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"[error]"</span>, err)</span><br><span class="line">      res.json(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这段后台代码成功执行的话，就可以得到openid和session_key。这个信息就是当前微信账户在微信服务器那边的登录态了。</p>
-<p>但是，为了安全方面的原因，请不要直接使用这些信息作为你小程序的用户标识和session标识回传到小程序客户端中去，<strong>我们应该在服务器端做一层自己的session，将这个微信账号登录态生成一个session id并维护在我们自己的session机制中，然后把这个session id派发到小程序客户端作为session标识来使用</strong>。</p>
-        
-          <a class="article-more-a" href="/2018/09/12/小程序/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">获取用户信息</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      <span id="busuanzi_container_page_pv">
-        |阅读量(<span id="busuanzi_value_page_pv"></span>)
-      </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/12/小程序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-<section id="comments" class="comments">
-  <style>
-    .comments{margin:30px;padding:10px;background:#fff}
-    @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
-  </style>
-  <div id="vcomment" class="comment"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<!--该版本显示突出评论头像，需要去掉头像链接后 v1.34-->
-<!--<script src="//unpkg.com/valine/dist/Valine.min.js"></script>-->
-<!--使用网友更改后的-->
-<script src="https://cdn.fayne.cn/js/Valine.min.js"></script>
-<script>
-  var notify = 'false' == true ? true : false;
-  var verify = 'false' == true ? true : false;
-  window.onload = function() {
-    new Valine({
-      el: '.comment',
-      notify: notify,
-      verify: verify,
-      app_id: "dKi2Ew50wY16TNA5aVPniGVm-gzGzoHsz",
-      app_key: "6F78vfJVBctk5R356YvHzl0M",
-      placeholder: "Just go go",
-      avatar:"mm"
-    });
-  }
-</script>
-
-</section>
-
-
-
-  
-    <article id="post-前端模块化总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/10/前端模块化总结/">前端模块化总结</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/10/前端模块化总结/" class="archive-article-date">
-  	<time datetime="2018-09-10T13:26:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>模块是自动运行在严格模式下并且没有办法退出运行的JS代码，目前前端运行环境分为浏览器环境和Node环境，                                          在这两个环境下使用的模块化方式也自然是不同的。</p>
-<p>我们将模块的使用分为两个方法:暴露自身数据、获取其他模块的数据</p>
-<table>
-<thead>
-<tr>
-<th>规范</th>
-<th>运行环境</th>
-<th>导出</th>
-<th>导入</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>commonjs</td>
-<td>浏览器/node</td>
-<td>module.exports/exports</td>
-<td>require</td>
-</tr>
-<tr>
-<td>AMD</td>
-<td>浏览器</td>
-<td>define  return</td>
-<td>require</td>
-</tr>
-<tr>
-<td>CMD</td>
-<td>浏览器</td>
-<td>define  exports</td>
-<td>require</td>
-</tr>
-<tr>
-<td>ES6</td>
-<td>浏览器/node</td>
-<td>export default / export</td>
-<td>import from</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><p><strong>Node环境</strong></p>
-<ul>
-<li><p>common.js：CommonJS是服务器模块的规范，Node.js采用了这个规范。</p>
-<p>根据CommonJS规范，一个单独的文件就是一个模块。每一个模块都是一个单独的作用域，也就是说，在一个文件定义的变量（还包括函数和类），都是私有的，对其他文件是不可见的。</p>
-<p>在这个规范下，暴露数据采用 <strong>module.exports 和exports</strong>这两个方法，获取数据采用<strong>require</strong>方法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a.js</span><br><span class="line"><span class="keyword">var</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">var</span> y=<span class="number">4</span>;</span><br><span class="line"><span class="keyword">var</span> addX = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value + x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">module</span>.exports.x = x;</span><br><span class="line"><span class="built_in">module</span>.exports.addX = addX;</span><br><span class="line">exports.y=y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">b.js</span><br><span class="line"><span class="keyword">const</span> a=<span class="built_in">require</span>(<span class="string">'a.js'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a.x);<span class="comment">//5</span></span><br><span class="line"><span class="built_in">console</span>.log(a.addX(<span class="number">5</span>));<span class="comment">//10</span></span><br><span class="line"><span class="built_in">console</span>.log(a.y);<span class="comment">//4</span></span><br></pre></td></tr></table></figure>
-<p>在a.js中通过module.exports暴露出x和addx方法，b.js通过requie获取a模块的暴露出的数据。</p>
-<p><strong>那么module.exports和exports有什么区别了？</strong></p>
-<p><img src="/images/module.jpg" alt="解构图"></p>
-<p>其实require导入的内容是module.exports的指向的内存块内容，并不是exports的，简而言之，exports是module.exports的引用，辅助后者添加内容用的。</p>
-<p><strong>所以，为了避免糊涂，尽量使用module.exports导出数据。</strong></p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2018/09/10/前端模块化总结/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">模块化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      <span id="busuanzi_container_page_pv">
-        |阅读量(<span id="busuanzi_value_page_pv"></span>)
-      </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/10/前端模块化总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-<section id="comments" class="comments">
-  <style>
-    .comments{margin:30px;padding:10px;background:#fff}
-    @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
-  </style>
-  <div id="vcomment" class="comment"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<!--该版本显示突出评论头像，需要去掉头像链接后 v1.34-->
-<!--<script src="//unpkg.com/valine/dist/Valine.min.js"></script>-->
-<!--使用网友更改后的-->
-<script src="https://cdn.fayne.cn/js/Valine.min.js"></script>
-<script>
-  var notify = 'false' == true ? true : false;
-  var verify = 'false' == true ? true : false;
-  window.onload = function() {
-    new Valine({
-      el: '.comment',
-      notify: notify,
-      verify: verify,
-      app_id: "dKi2Ew50wY16TNA5aVPniGVm-gzGzoHsz",
-      app_key: "6F78vfJVBctk5R356YvHzl0M",
-      placeholder: "Just go go",
-      avatar:"mm"
-    });
-  }
-</script>
-
-</section>
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1408,6 +1496,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
@@ -1417,14 +1513,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">cordova</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">模块化</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1440,6 +1528,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">圣杯</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">双飞翼 BFC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">获取用户信息</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">路由</a>
               </li>
              
@@ -1449,14 +1553,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">获取用户信息</a>
               </li>
             
             <div class="clearfix"></div>
