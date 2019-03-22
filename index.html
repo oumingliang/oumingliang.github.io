@@ -744,158 +744,6 @@
 
 
   
-    <article id="post-圣杯布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/21/圣杯布局/">圣杯布局&amp;双飞翼布局&amp;BFC</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/21/圣杯布局/" class="archive-article-date">
-  	<time datetime="2019-03-21T13:07:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h1><p>上周电话面试某游戏公司，开局第一个问题就是 圣杯布局与双飞翼，我以前看过，不过没放在心上，当面试官问我的时候，我只能想起 是左右定宽，中间自适应， 我知道有5种实现该布局的方式，但是不知道圣杯与双飞翼是哪一种，哎，回去看了这两个布局的资料，诶，发现，圣杯与双飞翼 是另外两种。</p>
-<h1 id="2-圣杯布局"><a href="#2-圣杯布局" class="headerlink" title="2. 圣杯布局"></a>2. 圣杯布局</h1><p><img src="https://i.loli.net/2019/03/21/5c93902074e2b.png" alt=""></p>
-<p>反正不管是圣杯还是双飞翼，最后结果都是如上图所示。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"middle"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h4</span>&gt;</span>middle<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>HHHHHHHHHHHHHHHHHHHHHH</span><br><span class="line">        hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span><br><span class="line">        HHHHHHHHHHHHHHHHHHHHHH</span><br><span class="line">        hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>left<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>oooooooooooooo</span><br><span class="line">        00000000000000000</span><br><span class="line">        ooooooooooooooo</span><br><span class="line">        ooooooooooooooo</span><br><span class="line">        000000000000000<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>right<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>BBBBBBBBBBBBBB</span><br><span class="line">        BBBBBBBBBBBBBBBBBB</span><br><span class="line">        88888888888888888888<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>DOM上， 中间的放首位，然后是左边，右边。</p>
-<p><strong>操作步奏：</strong></p>
-<p><strong>1.将三者都 float:left , 再加上一个position:relative (因为相对定位后面会用到）</strong></p>
-<p><strong>2.middle部分 width:100%占满</strong></p>
-<p><strong>3.此时middle占满了，所以要把left拉到最左边，使用margin-left:-100%</strong></p>
-<p><strong>4.这时left拉回来了，但会覆盖middle内容的左端，要把middle内容拉出来，所以在外围container加上 padding:0 220px 0 200px</strong></p>
-<p><strong>5.middle内容拉回来了，但left也跟着过来了，所以要还原，就对left使用相对定位 left:-200px  同理，right也要相对定位还原 right:-220px</strong></p>
-<p><strong>6.到这里大概就自适应好了。如果想container高度保持一致可以给left middle right都加上min-height:130px</strong></p>
-<p><strong>由于middle 宽度100%</strong></p>
-<p>CSS 代码：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span>,</span><br><span class="line">  <span class="selector-class">.middle</span>,</span><br><span class="line">  <span class="selector-class">.right</span>&#123; </span><br><span class="line">      <span class="attribute">position</span>: relative;</span><br><span class="line">      <span class="attribute">float</span>: left;</span><br><span class="line">      <span class="attribute">min-height</span>: <span class="number">130px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.container</span>&#123;</span><br><span class="line">      <span class="attribute">padding</span>:<span class="number">0</span> <span class="number">220px</span> <span class="number">0</span> <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.left</span>&#123;</span><br><span class="line">      <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">left</span>: -<span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">background</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.right</span>&#123;</span><br><span class="line">      <span class="attribute">margin-left</span>: -<span class="number">220px</span>;</span><br><span class="line">      <span class="attribute">right</span>: -<span class="number">220px</span>;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">220px</span>;</span><br><span class="line">      <span class="attribute">background</span>: green;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.middle</span>&#123; </span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">      <span class="attribute">background</span>: blue;</span><br><span class="line">      <span class="attribute">word-break</span>: break-all;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="操作关键要点："><a href="#操作关键要点：" class="headerlink" title="操作关键要点："></a>操作关键要点：</h3><p> <strong>在父元素container 中通过设置 padding 值来显示left 与right。</strong></p>
-<p><strong>父元素设置overflow:hidden，这个可是有讲究的，这是为了将整个块设置为BFC ，在计算BFC高度时，浮动元素也参与运算。</strong></p>
-<ul>
-<li>这是没开启 overflow:hidden时，可见 高度为0</li>
-</ul>
-<p><img src="https://i.loli.net/2019/03/21/5c939573ec99e.png" alt=""></p>
-<ul>
-<li>在开启后，高度被子元素撑开。</li>
-</ul>
-<p><img src="https://i.loli.net/2019/03/21/5c9395cd311b0.png" alt=""></p>
-<h1 id="3-双飞翼布局"><a href="#3-双飞翼布局" class="headerlink" title="3. 双飞翼布局"></a>3. 双飞翼布局</h1><p>双飞翼布局是阿里提出来的，与 圣杯有以下三点区别</p>
-<ol>
-<li><strong>圣杯布局 需要 浮动与相对定位， 而 双飞翼 只需要浮动</strong></li>
-<li><strong>圣杯布局 是通过父元素的 pddding 来为 left，right 预留空间， 而双飞翼 是通过 margin 来显示完整middle 的内容。</strong></li>
-<li><strong>双飞翼 在middle中 加了一层 容器，所以Dom结构就不一样。</strong></li>
-</ol>
-        
-          <a class="article-more-a" href="/2019/03/21/圣杯布局/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">圣杯</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">双飞翼 BFC</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      <span id="busuanzi_container_page_pv">
-        |阅读量(<span id="busuanzi_value_page_pv"></span>)
-      </span>
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/21/圣杯布局/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-<section id="comments" class="comments">
-  <style>
-    .comments{margin:30px;padding:10px;background:#fff}
-    @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
-  </style>
-  <div id="vcomment" class="comment"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<!--该版本显示突出评论头像，需要去掉头像链接后 v1.34-->
-<!--<script src="//unpkg.com/valine/dist/Valine.min.js"></script>-->
-<!--使用网友更改后的-->
-<script src="https://cdn.fayne.cn/js/Valine.min.js"></script>
-<script>
-  var notify = 'false' == true ? true : false;
-  var verify = 'false' == true ? true : false;
-  window.onload = function() {
-    new Valine({
-      el: '.comment',
-      notify: notify,
-      verify: verify,
-      app_id: "dKi2Ew50wY16TNA5aVPniGVm-gzGzoHsz",
-      app_key: "6F78vfJVBctk5R356YvHzl0M",
-      placeholder: "Just go go",
-      avatar:"mm"
-    });
-  }
-</script>
-
-</section>
-
-
-
-  
     <article id="post-vue-WebAPP-cordova" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1234,6 +1082,158 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/02/14/css总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+<section id="comments" class="comments">
+  <style>
+    .comments{margin:30px;padding:10px;background:#fff}
+    @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+  </style>
+  <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--该版本显示突出评论头像，需要去掉头像链接后 v1.34-->
+<!--<script src="//unpkg.com/valine/dist/Valine.min.js"></script>-->
+<!--使用网友更改后的-->
+<script src="https://cdn.fayne.cn/js/Valine.min.js"></script>
+<script>
+  var notify = 'false' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  window.onload = function() {
+    new Valine({
+      el: '.comment',
+      notify: notify,
+      verify: verify,
+      app_id: "dKi2Ew50wY16TNA5aVPniGVm-gzGzoHsz",
+      app_key: "6F78vfJVBctk5R356YvHzl0M",
+      placeholder: "Just go go",
+      avatar:"mm"
+    });
+  }
+</script>
+
+</section>
+
+
+
+  
+    <article id="post-悦动在线小程序总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/18/悦动在线小程序总结/">悦动在线小程序总结</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/18/悦动在线小程序总结/" class="archive-article-date">
+  	<time datetime="2018-11-18T11:40:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-项目规划"><a href="#1-项目规划" class="headerlink" title="1. 项目规划"></a>1. 项目规划</h2><p>本项目为基于微信手机应用平台的一款运动互动型小程序，<strong>实现了用户即时运动步数群内PK与个人动态的发布</strong>，<strong>小程序前端采用原生框架，后端采用基于Node的koa2框架，数据库采用MYSQL，对象存储采用七牛云，服务器采用阿里ECS，域名采用CA认证。</strong></p>
+<p>运行效果如下</p>
+<video id="video" controls preload="none" poster="https://image.catac.cn/%E6%82%A6%E5%8A%A8%E5%9C%A8%E7%BA%BF%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4"><br><source id="mp4" src="https://image.catac.cn/%E6%82%A6%E5%8A%A8%E5%9C%A8%E7%BA%BF%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4" type="video/mp4"><br></video>
+
+
+<h2 id="2-支撑技术点分析"><a href="#2-支撑技术点分析" class="headerlink" title="2. 支撑技术点分析"></a>2. 支撑技术点分析</h2><h3 id="2-1-七牛云存储"><a href="#2-1-七牛云存储" class="headerlink" title="2.1 七牛云存储"></a>2.1 七牛云存储</h3><p>在这个项目中，有个功能为动态发布，允许用户上传图片，动态发布后，所有人可在动态广场看到该动态，存储图片有很多方式，例如通过表单将文件转为为二级制发送给后端，然后存数据库中，但是，这样我就要多写很多代码，所有我决定将图片存储到图床，我数据库中保存图片链接即可，图床有很多，不一一描述了，我这次用的是七牛云，个人认证成功后将获得一定空间的免费存储空间。</p>
+<p>建立存储空间（ydonline），选定存储区域(华北)。</p>
+<p><img src="https://image.catac.cn/七牛云列表.PNG" alt=""></p>
+<p>注册成功后，将获得两组秘钥，这东西很重要，上传文件时，需要知道<strong>uptoken</strong>，uptoken是根据AK与SC生成的，<strong>七牛云开发文档中建议后端生成uptoken值</strong>，但我嫌麻烦，直接在线生成了uptoken，也就是说该uptoken是写死的。 </p>
+<p><strong>uptoken生成地址：<a href="http://pchou.qiniudn.com/qiniutool/uptoken.html" target="_blank" rel="noopener">http://pchou.qiniudn.com/qiniutool/uptoken.html</a> deadline的时间设置长一些</strong></p>
+<p><img src="https://image.catac.cn/七牛云秘钥.PNG" alt=""></p>
+<p><strong>引入官方开发文件：qiniuUploader.js</strong></p>
+<p><strong>小程序端存储图片关键代码：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">releaseNotice.js</span><br><span class="line"><span class="keyword">const</span> qiniuUploader = <span class="built_in">require</span>(<span class="string">"qiniuUploader.js"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">didPressChooesImage</span>(<span class="params">that</span>) </span>&#123;</span><br><span class="line">  initQiniu();</span><br><span class="line">  <span class="comment">// 微信 API 选文件</span></span><br><span class="line">  wx.chooseImage(&#123;</span><br><span class="line">    count: <span class="number">1</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> filePath = res.tempFilePaths[<span class="number">0</span>];</span><br><span class="line">      <span class="comment">// 交给七牛上传</span></span><br><span class="line">      qiniuUploader.upload(filePath, (res) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> imageurl = that.data.imageurl;</span><br><span class="line">        imageurl.push(getApp().data.qiniu_domain + res.key);</span><br><span class="line">        that.setData(&#123;</span><br><span class="line">          <span class="string">'imageurl'</span>: imageurl</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, (error) =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.error(<span class="string">'error: '</span> + <span class="built_in">JSON</span>.stringify(error));</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initQiniu</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//配置详解 https://github.com/gpake/qiniu-wxapp-sdk/blob/master/README.md</span></span><br><span class="line">  <span class="keyword">var</span> options = &#123;</span><br><span class="line">    region: <span class="string">'NCN'</span>, <span class="comment">// 华东区 根据存储区域填写</span></span><br><span class="line">    <span class="comment">//uptokenURL: 'UpTokenURL.com/uptoken',//// 从指定 url 通过 HTTP GET 获取 uptoken，返回的格式必须是 json 且包含 uptoken 字段，例如： &#123;"uptoken": "0MLvWPnyy..."&#125;</span></span><br><span class="line">    uptoken: getApp().data.qiniu_uptoken,</span><br><span class="line">    domain: getApp().data.qiniu_domain</span><br><span class="line">  &#125;;</span><br><span class="line">  qiniuUploader.init(options);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------------------  </span><br><span class="line">app.js</span><br><span class="line"></span><br><span class="line">App(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    qiniu_domain: <span class="string">'http://pgwn32i53.bkt.clouddn.com/'</span>,<span class="comment">//七牛图片外链域名</span></span><br><span class="line">    qiniu_uptoken: <span class="string">'uxQXOgxXDtF-1uM_V15KQSIky5Xkdww0GhoAksLF:LWUt0HMVbICEDaSOMnMF3YLoUH4=:eyJzY29wZSI6Inlkb25saW5lIiwiZGVhZGxpbmUiOjE4NTU2NzA0MDF9'</span></span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>上传文件到指定的存储空间，七牛会返回文件的key值，加上七牛给你的外链域名，这样，你就可以显示文件了。</p>
+<hr>
+<h3 id="2-2-服务器与域名"><a href="#2-2-服务器与域名" class="headerlink" title="2.2 服务器与域名"></a>2.2 服务器与域名</h3><p>我买过两次服务器，第一次是阿里的，另外一次也是阿里的。但这次，我买的是windows版云ECS ，首先，明确需求。</p>
+<ol>
+<li>远程连接部署项目（安装环境，运行后台，域名解析，外网访问）</li>
+<li>进行域名CA认证， 小程序的请求必须得是HTTPS。</li>
+</ol>
+<p>在windows 服务器上部署项目 简单， 远程链接时，选择共享本地某个硬盘的资料，连接成功后，把本地的环境软件全部安装上去，本次需要在服务器上安装 node.js、git、mysql这三个软件。</p>
+<p>购买SSL证书</p>
+<p><a href="https://yundunnext.console.aliyun.com/?p=casnext#/overview/cn-hangzhou" target="_blank" rel="noopener">https://yundunnext.console.aliyun.com/?p=casnext#/overview/cn-hangzhou</a></p>
+<p>阿里有对单域名免费的证书，时间为1年，于是我为该项目的域名购买了https。</p>
+<p><img src="https://image.catac.cn/已购SSl.PNG" alt=""></p>
+<p>点击下载 =&gt;选择 其他</p>
+<p><img src="https://image.catac.cn/证书下载.PNG" alt=""></p>
+<p>解压后，里面有两个文件，一个是crt，一个是key，将这两个文件发在后台文件夹下/ssl包下 （可随便命名）</p>
+<p>后台加载这两个文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.js 关键代码</span><br><span class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">    https = <span class="built_in">require</span>(<span class="string">'https'</span>);</span><br><span class="line">app=<span class="keyword">new</span> app();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">  key: fs.readFileSync(<span class="string">'./ssl/key.key'</span>),  <span class="comment">//ssl文件路径</span></span><br><span class="line">  cert: fs.readFileSync(<span class="string">'./ssl/crt.crt'</span>)  <span class="comment">//ssl文件路径</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// start the server</span></span><br><span class="line">https.createServer(options, app.callback()).listen(<span class="number">443</span>);</span><br></pre></td></tr></table></figure>
+<p>这样，后台就跑在htpps下了。</p>
+<p>在服务器上运行后台：</p>
+<p><img src="https://image.catac.cn/运行后台.PNG" alt=""></p>
+<p><strong>然后你用自己的电脑打开该域名，你会发现根本连接不上。</strong></p>
+        
+          <a class="article-more-a" href="/2018/11/18/悦动在线小程序总结/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      <span id="busuanzi_container_page_pv">
+        |阅读量(<span id="busuanzi_value_page_pv"></span>)
+      </span>
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/18/悦动在线小程序总结/">展开全文 >></a>
         </p>
       
 
