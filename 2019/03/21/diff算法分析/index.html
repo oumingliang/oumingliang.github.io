@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/03/24/5c977d9e138f9.jpeg">
 <meta property="og:image" content="https://i.loli.net/2019/03/24/5c977dbbac057.jpeg">
 <meta property="og:image" content="https://i.loli.net/2019/03/24/5c977dccd6020.jpeg">
-<meta property="og:updated_time" content="2019-03-24T12:53:44.265Z">
+<meta property="og:updated_time" content="2019-03-24T12:56:17.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="diff算法分析">
 <meta name="twitter:description" content="一、前言Vue的核心是双向绑定和虚拟DOM（下文我们简称为vdom），vdom是树状结构，其节点为vnode，vnode和浏览器DOM中的Node一一对应，通过vnode的elm属性可以访问到对应的Node。 vdom因为是纯粹的JS对象，所以操作它会很高效，但是vdom的变更最终会转换成DOM操作，为了实现高效的DOM操作，一套高效的虚拟DOM diff算法显得很有必要。 Vue的diff算法是">
@@ -222,6 +222,7 @@
 <p>“原地复用”在Vue的官方文档中有提到，虽然带来了好处，但是也会产生一些问题，朋友们可以复习一下</p>
 <p><a href="https://cn.vuejs.org/v2/guide/list.html#key" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/list.html#key</a></p>
 <p><a href="https://cn.vuejs.org/v2/guide/conditional.html#用-key-管理可复用的元素" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/conditional.html#用-key-管理可复用的元素</a></p>
+<a id="more"></a>
 <h1 id="五、按步解剖实例"><a href="#五、按步解剖实例" class="headerlink" title="五、按步解剖实例"></a>五、按步解剖实例</h1><h2 id="（一）、整体视图"><a href="#（一）、整体视图" class="headerlink" title="（一）、整体视图"></a>（一）、整体视图</h2><p><img src="https://i.loli.net/2019/03/24/5c977c6529672.jpeg" alt=""></p>
 <p>先看一张整体视图，整个diff分两部分：</p>
 <p>（1）、第一部分是一个循环，循环内部是一个分支逻辑，每次循环只会进入其中的一个分支，每次循环会处理一个节点，处理之后将节点标记为已处理（oldVdom和newVdom都要进行标记，如果节点只出现在其中某一个vdom中，则另一个vdom中不需要进行标记），标记的方法有2种，当节点正好在vdom的指针处，移动指针将它排除到未处理列表之外即可，否则就要采用其他方法，Vue的做法是将节点设置为undefined。</p>
